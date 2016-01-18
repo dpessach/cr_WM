@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <title>conditional reasoning and working memory</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="jspsych-4.3/jspsych.js"></script>
+        <script src="jspsych-4.3/plugins/jspsych-text.js"></script>
+		<script src="jspsych-4.3/plugins/jspsych-single-stim.js"></script>
+		<link href="jspsych-4.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <body> 
+	
+    </body>
+    <script>
+
+    var welcome_msg = "<div id='instruktion'><p>Willkommen! </p><p>" +
+	"to continue, press Enter! Hihi, presenter...</p></div>";
+
+    var instructions = "<div id='instruktion'><p>You will see " +
+	"some pics like that:</p><p>" +
+	"<img src='img/smile1.jpg'></p><p> " +
+	"bla bla <strong> bla </strong>. If it's happy press " +
+	"the arrow <strong> up </strong>, </p><p> "+
+	"if it's unhappy the arrow <strong> down </strong>.</p><p>pres(s)enter to begin.</p>";
+
+    var instr_block = {
+	type: "text",
+	text: [welcome_msg, instructions]
+    };
+
+	///////////////////////////////////////
+	//defining all the variables/arrays: //
+	
+	
+	var All = ["P1", "P2", "P3", "P4"];
+
+	var P1 = ["MP1", "MT1", "AC1", "DA1"];
+	
+	var P2 = ["MP2", "MT2", "AC2", "DA2"];
+	
+	var P3 = ["MP3", "MT3", "AC3", "DA3"];
+	
+	var P4 = ["MP4", "MT4", "AC4", "DA4"];
+	
+	var MP1 = ["MP1orig", "MP1neg"];
+	var MP2 = ["MP2orig", "MP2neg"];
+	var MP3 = ["MP3orig", "MP3neg"];
+	var MP4 = ["MP4orig", "MP4neg"];
+	
+	var MT1 = ["MT1orig", "MT1neg"];
+	var MT2 = ["MT2orig", "MT2neg"];
+	var MT3 = ["MT3orig", "MT3neg"];
+	var MT4 = ["MT4orig", "MT4neg"];
+	
+	var AC1 = ["AC1orig", "AC1neg"];
+	var AC2 = ["AC2orig", "AC2neg"];
+	var AC3 = ["AC3orig", "AC3neg"];
+	var AC4 = ["AC4orig", "AC4neg"];
+	
+	var DA1 = ["DA1orig", "DA1neg"];
+	var DA2 = ["DA2orig", "DA2neg"];
+	var DA3 = ["Da3orig", "DA3neg"];
+	var DA4 = ["DA4orig", "DA4neg"];
+	
+//
+	
+
+
+    var all_trials = jsPsych.randomization.repeat(test_stimuli, 2);
+
+    var test_block = {
+	type: "single-stim",
+	stimuli: all_trials,
+	choices: [38, 40]
+    };
+
+////-------------------------------------------------------------------------------------////
+/// Ablauf: 1. shuffle All   2. shuffle P1-4    3. shuffle rest    
+///         4. XP1 = All[0]  XP2 = All[1] etc.  5. XM1 = XP1[0]   XM2 = XP2[1] etc.   
+///         6.  
+
+jsPsych.randomization.shuffle(array)
+	
+    var experiment = [];
+    experiment.push(instr_block);
+    experiment.push(test_block);
+    
+    jsPsych.init({
+	experiment_structure: experiment
+    });
+
+    </script>
+</html>

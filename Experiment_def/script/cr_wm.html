@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-similarity_for_cr_wm.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css"></link>
+    <link rel="stylesheet" href="../css/jspsych.css"></link>
+    <style>
+      img { width: 300px; }
+    </style>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+	<p id="demo1"></p>
+	<p id="demo2"></p>
+	<p id="demo3"></p>
+  </body>
+  <script>
+
+var timeline = [];
+
+var stimlist = [];
+var stimlistModus = [];
+var stimlistCode = [];
+var stimlistNA = [];
+  
+/*Zuordnung & Randomisierung:*/
+
+var txt1 = "";
+var txt2 = "";
+var txt3 = "";
+var txt4 = "";
+var txt5 = "";
+var txt6 = "";
+var txt7 = "";
+var txt8 = "";
+var mp = ["p_q", "p_nq"];
+var mt = ["nq_np", "nq_p"];
+var ac = ["q_p", "q_np"];
+var da = ["np_nq", "np_q"];
+var P = [1, 2, 3, 4];
+var i;
+var B1 = [];
+var B2 = [];
+
+for (i in P) {
+var BA = [];
+var BB = [];
+
+var smp = jsPsych.randomization.shuffle(mp);
+var smt = jsPsych.randomization.shuffle(mt);
+var sac = jsPsych.randomization.shuffle(ac);
+var sda = jsPsych.randomization.shuffle(da);
+
+    txt1 = P[i] + smp[0];
+    txt2 = P[i] + smt[0];
+	txt3 = P[i] + sac[0];
+	txt4 = P[i] + sda[0];
+	txt5 = P[i] + smp[1];
+    txt6 = P[i] + smt[1];
+	txt7 = P[i] + sac[1];
+	txt8 = P[i] + sda[1];
+	
+BA.push(txt1);
+BA.push(txt2);
+BA.push(txt3);
+BA.push(txt4);
+BB.push(txt5);
+BB.push(txt6);
+BB.push(txt7);
+BB.push(txt8);  
+
+var sBA = jsPsych.randomization.shuffle(BA);
+var sBB = jsPsych.randomization.shuffle(BB);
+
+B1.push(sBA);
+B2.push(sBB);
+}
+
+sB1 = jsPsych.randomization.shuffle(B1);
+sB2 = jsPsych.randomization.shuffle(B2);
+stimlistCode.push(sB1);
+stimlistCode.push(sB2);
+
+//document.getElementById("demo1").innerHTML = stimlistCode;
+
+//Creating Array only with strings (NoArrays):
+
+var stimlistNA = [];
+
+
+	for (i= 0; i < 4; i++) {
+		for (j= 0; j < 4; j++) {
+		xi = sB1[i];
+		yj = xi[j];
+		stimlistNA.push(yj);
+		}
+	}
+	
+	for (i= 0; i < 4; i++) {
+		for (j= 0; j < 4; j++) {
+		xi = sB2[i];
+		yj = xi[j];
+		stimlistNA.push(yj);
+		}
+	}
+	
+document.getElementById("demo2").innerHTML = stimlistNA;
+
+	
+//Decodierung für Präsentation:
+for (i= 0; i < stimlistNA.length; i++) {
+	xi = stimlistNA[i];
+	if (xi == "1p_q") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: A.</p><p> Konklusion: Also B.</p>");
+	} else if (xi === "1p_nq") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: A.</p><p> Konklusion: Also !B.</p>");
+	} else if (xi === "1nq_np") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !B.</p><p> Konklusion: Also !A.</p>");
+	} else if (xi === "1nq_p") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !B.</p><p> Konklusion: Also A.</p>");
+	} else if (xi === "1q_p") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: B.</p><p> Konklusion: Also A.</p>");
+	} else if (xi === "1q_np") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: B.</p><p> Konklusion: Also !A.</p>");
+	} else if (xi === "1np_nq") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !A.</p><p> Konklusion: Also !B.</p>");
+	} else if (xi === "1np_q") {
+	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !A.</p><p> Konklusion: Also B.</p>");
+	} else if (xi === "2p_q") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: C.</p><p> Konklusion: Also D.</p>");
+	} else if (xi === "2p_nq") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: C.</p><p> Konklusion: Also !D.</p>");
+	} else if (xi === "2nq_np") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !D.</p><p> Konklusion: Also !C.</p>");
+	} else if (xi === "2nq_p") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !D.</p><p> Konklusion: Also C.</p>");
+	} else if (xi === "2q_p") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: D.</p><p> Konklusion: Also C.</p>");
+	} else if (xi === "2q_np") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: D.</p><p> Konklusion: Also !C.</p>");
+	} else if (xi === "2np_nq") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !C.</p><p> Konklusion: Also !D.</p>");
+	} else if (xi === "2np_q") {
+	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !C.</p><p> Konklusion: Also D.</p>");
+	} else if (xi === "3p_q") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: E.</p><p> Konklusion: Also F.</p>");
+	} else if (xi === "3p_nq") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: E.</p><p> Konklusion: Also !F.</p>");
+	} else if (xi === "3nq_np") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !F.</p><p> Konklusion: Also !E.</p>");
+	} else if (xi === "3nq_p") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !F.</p><p> Konklusion: Also E.</p>");
+	} else if (xi === "3q_p") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: F.</p><p> Konklusion: Also E.</p>");
+	} else if (xi === "3q_np") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: F.</p><p> Konklusion: Also !E.</p>");
+	} else if (xi === "3np_nq") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !E.</p><p> Konklusion: Also !F.</p>");
+	} else if (xi === "3np_q") {
+	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !E.</p><p> Konklusion: Also F.</p>");
+	} else if (xi === "4p_q") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: G.</p><p> Konklusion: Also H.</p>");
+	} else if (xi === "4p_nq") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: G.</p><p> Konklusion: Also !H.</p>");
+	} else if (xi === "4nq_np") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !H.</p><p> Konklusion: Also !G.</p>");
+	} else if (xi === "4nq_p") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !H.</p><p> Konklusion: Also G.</p>");
+	} else if (xi === "4q_p") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: H.</p><p> Konklusion: Also G.</p>");
+	} else if (xi === "4q_np") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: H.</p><p> Konklusion: Also !G.</p>");
+	} else if (xi === "4np_nq") {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !G.</p><p> Konklusion: Also !H.</p>");
+	} else {
+	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !G.</p><p> Konklusion: Also H.</p>");
+	} 
+}
+
+
+//Decodierung für Daten:
+for (i= 0; i < stimlistNA.length; i++) {
+	xi = stimlistNA[i];
+	if (xi === "1p_q") {
+	stimlistModus.push("1_MP");
+	} else if (xi === "1p_nq") {
+	stimlistModus.push("1_MP_'");
+	} else if (xi === "1nq_np") {
+	stimlistModus.push("1_MT");
+	} else if (xi === "1nq_p") {
+	stimlistModus.push("1_MT_'");
+	} else if (xi === "1q_p") {
+	stimlistModus.push("1_AC");
+	} else if (xi === "1q_np") {
+	stimlistModus.push("1_AC_'");
+	} else if (xi === "1np_nq") {
+	stimlistModus.push("1_DA");
+	} else if (xi === "1np_q") {
+	stimlistModus.push("1_DA_'");
+	} else if (xi === "2p_q") {
+	stimlistModus.push("2_MP");
+	} else if (xi === "2p_nq") {
+	stimlistModus.push("2_MP_'");
+	} else if (xi === "2nq_np") {
+	stimlistModus.push("2_MT");
+	} else if (xi === "2nq_p") {
+	stimlistModus.push("2_MT_'");
+	} else if (xi === "2q_p") {
+	stimlistModus.push("2_AC");
+	} else if (xi === "2q_np") {
+	stimlistModus.push("2_AC_'");
+	} else if (xi === "2np_nq") {
+	stimlistModus.push("2_DA");
+	} else if (xi === "2np_q") {
+	stimlistModus.push("2_DA_'");
+	} else if (xi === "3p_q") {
+	stimlistModus.push("3_MP");
+	} else if (xi === "3p_nq") {
+	stimlistModus.push("3_MP_'");
+	} else if (xi === "3nq_np") {
+	stimlistModus.push("3_MT");
+	} else if (xi === "3nq_p") {
+	stimlistModus.push("3_MT_'");
+	} else if (xi === "3q_p") {
+	stimlistModus.push("3_AC");
+	} else if (xi === "3q_np") {
+	stimlistModus.push("3_AC_'");
+	} else if (xi === "3np_nq") {
+	stimlistModus.push("3_DA");
+	} else if (xi === "3np_q") {
+	stimlistModus.push("3_DA_'");
+	} else if (xi === "4p_q") {
+	stimlistModus.push("4_MP");
+	} else if (xi === "4p_nq") {
+	stimlistModus.push("4_MP_'");
+	} else if (xi === "4nq_np") {
+	stimlistModus.push("4_MT");
+	} else if (xi === "4nq_p") {
+	stimlistModus.push("4_MT_'");
+	} else if (xi === "4q_p") {
+	stimlistModus.push("4_AC");
+	} else if (xi === "4q_np") {
+	stimlistModus.push("4_AC_'");
+	} else if (xi === "4np_nq") {
+	stimlistModus.push("4_DA");
+	} else {
+	stimlistModus.push("4_DA_'");
+	}
+}
+
+document.getElementById("demo3").innerHTML = stimlistModus;
+
+
+
+//Trials:
+
+for (i = 0; i < 3; i++) {			//3 nur zum korr., richtig: stimlist.length !!!
+
+    
+  var trial_i = {
+    type: 'similarity',
+    is_html: true,
+	stimuli: [[stimlist[i]]],
+	timing_first_stim: -1,
+	intervals: 100,
+	show_ticks: true,
+	data: {Modus: stimlistModus[i]},
+	labels: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+	}
+	timeline.push(trial_i);
+	
+}
+  
+	
+/*for (i=0; i < stimlist.length; i++){
+	 var datumLang = Date();
+  var datum = datumLang.toJSON()
+	jsPsych.data.addProperties({Datum: datum})
+}*/
+	
+	
+  var vp_ID = jsPsych.randomization.randomID(6);
+    jsPsych.data.addProperties({VP: vp_ID})
+  var Datum = Date();
+	jsPsych.data.addProperties({Datum: Datum});
+ 
+  
+  jsPsych.init({
+    display_element: $('#jspsych-target'),
+    timeline: timeline,
+	default_iti: 100,
+    on_finish: function() {
+	jsPsych.data.displayData();
+	}
+  });
+  </script>
+</html>

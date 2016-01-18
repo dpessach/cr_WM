@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+ <head>
+         <title>Spu's Experiment</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="jspsych-4.3/jspsych.js"></script>
+        <script src="jspsych-4.3/plugins/jspsych-single-stim.js"></script>
+	<link href="jspsych-4.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+ </head>
+
+
+<body>
+</body>
+
+<script>
+
+var a = "<p>if p then q</p><p> p </p> <p> therefore q?</p>";
+var b = "John";
+
+var allStimuli = [a, b];
+
+var block = {
+	type: "single-stim",
+	stimuli: allStimuli,
+	choices: [49, 50, 51, 52, 53, 54, 55],
+	is_html: true,	
+	promt: "<p> 1 = not at all </p> <p> 2 = not likely etc.</p>"
+	};
+	
+ /* create experiment definition array */
+var experiment = [];
+    experiment.push(block);
+
+    /* start the experiment */
+jsPsych.init({
+      experiment_structure: experiment
+    });
+
+
+</script>
+
+
+</html>
