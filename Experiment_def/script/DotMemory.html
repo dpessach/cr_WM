@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/snap.svg-min.js"></script>
+    <script src="../jspsych.js"></script>
+	<link rel="stylesheet" href="../css/jspsych.css"></link>
+</head>
+<body>
+    
+
+<script>
+
+var stimlistCircles = [];
+
+var s = Snap(800, 800);
+
+
+//Draw lines:
+
+var l1 = s.line(100, 100, 400, 100);
+l1.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l2 = s.line(100, 200, 400, 200);
+l2.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l3 = s.line(100, 300, 400, 300);
+l3.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l4 = s.line(100, 400, 400, 400);
+l4.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l5 = s.line(100, 100, 100, 400);
+l5.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l6 = s.line(200, 100, 200, 400);
+l6.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l7 = s.line(300, 100, 300, 400);
+l7.attr({
+    stroke: "#000",
+    strokeWidth: 2
+	
+});
+
+var l8 = s.line(400, 100, 400, 400);
+l8.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+//Draw circles:
+var c1 = s.circle(150, 150, 20);
+var c2 = s.circle(250, 150, 20);
+var c3 = s.circle(350, 150, 20);
+var c4 = s.circle(150, 250, 20);
+var c5 = s.circle(250, 250, 20);
+var c6 = s.circle(350, 250, 20);
+var c7 = s.circle(150, 350, 20);
+var c8 = s.circle(250, 350, 20);
+var c9 = s.circle(350, 350, 20);
+
+//select circles shown in Trials:
+var circles = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+
+for (i=0; i<17, i++) {
+var sample_i = jsPsych.randomization.sample(circles, 4, false);
+stimlistCircles.push(sample_i);
+}
+
+
+</script>
+
+</body>
+</html>
