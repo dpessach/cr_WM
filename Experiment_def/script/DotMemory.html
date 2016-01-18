@@ -105,12 +105,17 @@ var c9 = s.circle(350, 350, 20);
 c9.attr({
     visibility: 'hidden'
 });
-/*
-//select circles shown in Trials:
-//for (i=0; i<16, i++) {
-
 
 var circles = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+
+var clickFunc1 = function () {
+	c1.transform('');
+	c1.animate({transform: visibility})
+}
+
+/*
+//select circles shown in Trials:
+for (i=0; i<16, i++) {
 
 var sample_i = jsPsych.randomization.sample(circles, 4, false);
 stimlistCircles.push(sample_i);
