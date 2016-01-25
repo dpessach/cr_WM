@@ -8,7 +8,6 @@
 </head>
 <body>
 <div id="dots"></div>    
-
 <script>
 
 var stimlistCircles = [];
@@ -204,7 +203,6 @@ c3.click(function() {
 		}
 });	
 
-var circles = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
 
 
 //group all together:
@@ -213,15 +211,29 @@ var g = s.group();
 g.add(l1, l2, l3, l4, l5, l6, l7, l8, c1, c2, c3, c4, c5, c6, c7, c8, c9);
 
 g.transform('t400,0');
-	
 
 /*
-//select circles shown in Trials:
-for (i=0; i<16, i++) {
+//create array containing vp-answer:
 
-var sample_i = jsPsych.randomization.sample(circles, 4, false);
-stimlistCircles.push(sample_i);
+var answer = [];
+for (i = 1, i<10, i++) {
+	if (ci.attr("opacity") === "1") {
+		answer.push(1);
+	} else {
+		answer.push(0);
+	}
 }
+
+document.getElementById("dots").innerHTML = answer;
+
+//generate random stimulus:
+var circles = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+	
+var stim = jsPsych.randomization.sample(circles, 4, false);
+
+
+
+
 
 */
 </script>

@@ -1,4 +1,4 @@
-/*
+/**
  * jspsych-similarity.js
  * Josh de Leeuw
  *
@@ -26,7 +26,7 @@ jsPsych.plugins.similarity = (function() {
 
     trial.timing_first_stim = trial.timing_first_stim || 1000; // default 1000ms
     trial.timing_second_stim = trial.timing_second_stim || -1; // -1 = inf time; positive numbers = msec to display second image.
-    trial.timing_image_gap = trial.timing_image_gap || 1; // default 1000ms
+    trial.timing_image_gap = trial.timing_image_gap || 1000; // default 1000ms
 
     trial.is_html = (typeof trial.is_html === 'undefined') ? false : trial.is_html;
     trial.prompt = (typeof trial.prompt === 'undefined') ? '' : trial.prompt;
@@ -107,9 +107,9 @@ jsPsych.plugins.similarity = (function() {
       }));
 
       $("#slider").slider({
-        value: 50,
-        min: 0,
-        max: 100,
+        value: Math.ceil(trial.intervals / 2),
+        min: 1,
+        max: trial.intervals,
         step: 1,
       });
 
@@ -166,20 +166,18 @@ jsPsych.plugins.similarity = (function() {
           'left': (spacing_interval * index) - (item_width / 2)
         });
       });
-		
-		// if prompt is set, show prompt
-      if (trial.prompt !== "") {
-        display_element.append(trial.prompt);
-      }
-      
-	  //  create button
+
+      //  create button
       display_element.append($('<button>', {
         'id': 'next',
         'class': 'sim',
-        'html': 'Weiter'
+        'html': 'Submit Answer'
       }));
 
-      
+      // if prompt is set, show prompt
+      if (trial.prompt !== "") {
+        display_element.append(trial.prompt);
+      }
 
       $("#next").click(function() {
         var endTime = (new Date()).getTime();
@@ -192,7 +190,7 @@ jsPsych.plugins.similarity = (function() {
 
         var score = $("#slider").slider("value");
         var trial_data = {
-          "score": score,
+          "sim_score": score,
           "rt": response_time,
           "stimulus": JSON.stringify([trial.stimuli[0], trial.stimuli[1]])
         };

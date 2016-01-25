@@ -43,9 +43,7 @@
   jsPsych.init({
     display_element: $('#jspsych-target'),
     timeline: [stim_block, test_block],
-    on_finish: function() { 
-	jsPsych.data.displayData(); 
-	}
+    on_finish: function() { jsPsych.data.displayData(); }
   });
 
   </script>
