@@ -2,62 +2,57 @@
 <html>
   <head>
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="../jspsych.js"></script>
-    <script src="../plugins/jspsych-similarity_for_cr_wm.js"></script>
-	<script src="../plugins/jspsych-palmer_for_cr_wm.js"></script>
 	<script src="js/snap.svg-min.js"></script>
-    <link rel="stylesheet" href="css/jquery-ui.css"></link>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-single-stim.js"></script>
+	<script src="../plugins/jspsych-palmer.js"></script>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
-    <style>
-      img { width: 300px; }
-    </style>
   </head>
   <body>
     <div id="jspsych-target"></div>
-	
   </body>
   <script>
 
-
-// create a stimulus using the generate_stimulus method
-var square_size = 3; // number of rows and columns
-var grid_spacing = 75; // pixels
-var circle_size = 20; // radius in pixels
-var configuration = [0,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1]; // see definition above
-
-var stimulus = jsPsych.palmer.generate_stimulus(square_size, grid_spacing, circle_size, configuration);
-
-// show target stimulus using single-stim plugin
-var stim_block = {
-    type: 'single-stim',
-    stimulus: stimulus,
-    is_html: true,
-    timing_response: 2000,
-    response_ends_trial: false
-}
-timeline.push(stim_block);
-
-var test_block = {
-    type: 'palmer',
-    configuration: configuration,
-    editable: true,
-    show_feedback: true,
-    timing_feedback: 2000,
-    prompt: '<p>Create the image you just saw. Click two circles to add or remove a line between them. Click submit when you are done.</p>'
-};
-timeline.push(test_block);
+	// create a stimulus using the generate_stimulus method
+	var square_size = 3; // number of rows and columns
+	var grid_spacing = 75; // pixels
+	var circle_size = 20; // radius in pixels
+	var configuration = [0,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1]; // see definition above
 
 
+	var stimulus = jsPsych.plugins.palmer.generate_stimulus(square_size, grid_spacing, circle_size, configuration);
+	var timeline = [];
+
+	// show target stimulus using single-stim plugin
+	var stim_block = {
+		type: 'single-stim',
+		stimulus: stimulus,
+		is_html: true,
+		timing_response: 2000,
+		response_ends_trial: false
+	};
+	timeline.push(stim_block);
+
+	var test_block = {
+		type: 'palmer',
+		configuration: configuration,
+		editable: true,
+		show_feedback: true,
+		timing_feedback: 2000,
+		prompt: '<p>Create the image you just saw. Click two circles to add or remove a line between them. Click submit when you are done.</p>'
+	};
+	timeline.push(test_block);
 
 
-jsPsych.init({
-    display_element: $('#jspsych-target'),
-    timeline: timeline,
-	default_iti: 100,
-    on_finish: function() {
-	jsPsych.data.displayData();
-	}
-  });
+
+
+	jsPsych.init({
+		display_element: $('#jspsych-target'),
+		timeline: timeline,
+		default_iti: 100,
+		on_finish: function() {
+		jsPsych.data.displayData();
+		}
+	  });
   </script>
 </html>

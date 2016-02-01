@@ -12,7 +12,7 @@
  * documentation: docs.jspsych.org
  *
  * 
- * Adopted for cr_WM DotWM-Task
+ * Adapted for cr_WM DotWM-Task
  */
 
 
@@ -20,7 +20,7 @@ jsPsych.plugins.dotWMTask = (function() {
 
   var plugin = {};
 
-
+  
   plugin.trial = function(display_element, trial) {
 
     // default parameter settings
@@ -133,16 +133,22 @@ c9.attr({
 });
 
 
+
 // let vp draw the circles //Click-Function:
+
+	var dotIsVisible = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+	
 c1.click(function() {
 		 if (c1.attr("opacity") === "1") {
 		 c1.attr({
 			opacity: 0
 			});
+		dotIsVisible[0] = 0;
 		} else {
 		c1.attr({
 			opacity: 1
 			});
+		dotIsVisible[0] = 1;
 		}
 });	
 c2.click(function() {
@@ -150,10 +156,12 @@ c2.click(function() {
 		 c2.attr({
 			opacity: 0
 			});
+		dotIsVisible[1] = 0;
 		} else {
 		c2.attr({
 			opacity: 1
 			});
+		dotIsVisible[1] = 1;
 		}
 });	
 c3.click(function() {
@@ -161,98 +169,96 @@ c3.click(function() {
 		 c3.attr({
 			opacity: 0
 			});
+		dotIsVisible[2] = 0;
 		} else {
 		c3.attr({
 			opacity: 1
 			});
+		dotIsVisible[2] = 1;
 		}
 });	c4.click(function() {
 		 if (c4.attr("opacity") === "1") {
 		 c4.attr({
 			opacity: 0
 			});
+		dotIsVisible[3] = 0;
 		} else {
 		c4.attr({
 			opacity: 1
 			});
+		dotIsVisible[3] = 1;
 		}
 });	c5.click(function() {
 		 if (c5.attr("opacity") === "1") {
 		 c5.attr({
 			opacity: 0
 			});
+		dotIsVisible[4] = 0;
 		} else {
 		c5.attr({
 			opacity: 1
 			});
+		dotIsVisible[4] = 1;
 		}
 });	c6.click(function() {
 		 if (c6.attr("opacity") === "1") {
 		 c6.attr({
 			opacity: 0
 			});
+		dotIsVisible[5] = 0;
 		} else {
 		c6.attr({
 			opacity: 1
 			});
+		dotIsVisible[5] = 1;
 		}
 });	c7.click(function() {
 		 if (c7.attr("opacity") === "1") {
 		 c7.attr({
 			opacity: 0
 			});
+		dotIsVisible[6] = 0;
 		} else {
 		c7.attr({
 			opacity: 1
 			});
+		dotIsVisible[6] = 1;
 		}
 });	c8.click(function() {
 		 if (c8.attr("opacity") === "1") {
 		 c8.attr({
 			opacity: 0
 			});
+		dotIsVisible[7] = 0;
 		} else {
 		c8.attr({
 			opacity: 1
 			});
+		dotIsVisible[7] = 1;
 		}
 });	c9.click(function() {
 		 if (c9.attr("opacity") === "1") {
 		 c9.attr({
 			opacity: 0
 			});
+		dotIsVisible[8] = 0;
 		} else {
 		c9.attr({
 			opacity: 1
 			});
+		dotIsVisible[8] = 1;
 		}
 });	
 
 
 
-//group all together and center:
-var g = s.group();
-
-g.add(l1, l2, l3, l4, l5, l6, l7, l8, c1, c2, c3, c4, c5, c6, c7, c8, c9);
-
-g.transform('t400,0');
-
-
-
+		
     // start recording the time
     var startTime = (new Date()).getTime();
-	var dotIsVisible = [];
+	
     display_element.append($('<button id="jspsych-dotWMTask-submitButton" class="jspsych-btn" type="button">Weiter</button>'));
     $('#jspsych-dotWMTask-submitButton').click(function() {
-		
-		for (i = 1, i<10, i++) {
-		if (ci.attr("opacity") === "1") {
-			dotIsVisible.push(1);
-		} else {
-			dotIsVisible.push(0);
-			}
-		}
-      save_data();
+		  save_data();
     });
 
     if (trial.prompt !== "") {
@@ -285,7 +291,7 @@ g.transform('t400,0');
       var correct = (n_diff === 0);
 
       trial_data = {
-        "configuration": JSON.stringify(dotIsVisible),
+        "configuration_by_VP": JSON.stringify(dotIsVisible),
         "target_configuration": JSON.stringify(trial.configuration),
         "rt": response_time,
         "correct": correct,
@@ -343,7 +349,7 @@ g.transform('t400,0');
     $('#jspsych-dotWMTask-container').append('<svg id="jspsych-dotWMTask-temp-stim" width="' + 1000 + '" height="' + 1000 + '"></svg>');
 
     // create the snap object
-    var paper = Snap("#jspsych-dotWMTask-temp-stim");
+    var s = Snap("#jspsych-dotWMTask-temp-stim");
 
     // create the circles and lines
 	
@@ -438,19 +444,22 @@ c9.attr({
 
 
 
+
+
     //random selection of dots to show:
  
 	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
 	var dotsSelected = jsPsych.randomization.sample(dots, n_circles, false);
 	var configuration = [];
-	for (i in dotsSelected) {
-		var ds = dotsSelected[i]
-		if( $.inArray(ds, dots) != -1){
+	for (i in dots) {
+		var d = dots[i]
+		if( $.inArray(d, dotsSelected) != -1){
 			configuration.push(1);
 		} else {
 			configuration.push(0);
 		}
 	};
+
 	
  // actually draw the dots
    

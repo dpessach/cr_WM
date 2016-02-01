@@ -2,51 +2,47 @@
 <html>
   <head>
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/snap.svg-min.js"></script>
     <script src="../jspsych.js"></script>
-    <script src="../plugins/jspsych-similarity_for_cr_wm.js"></script>
-	<script src="../plugins/jspsych-dotWMTask.js"></script>
-	<script src="js/snap.svg-min.js"></script>
-    <link rel="stylesheet" href="css/jquery-ui.css"></link>
+    <script src="../plugins/jspsych-dotWMTask.js"></script>
+    <script src="../plugins/jspsych-single-stim.js"></script>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
-    <style>
-      img { width: 300px; }
-    </style>
   </head>
   <body>
     <div id="jspsych-target"></div>
-	<div id="demo"></div>
   </body>
   <script>
 
 var n_circles = 4;
 
-var stimulus = jsPsych.dotWMTask.generate_stimulus(n_circles);
+var stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles);
+var timeline = [];
 
 // show target stimulus using single-stim plugin
-var stim_block = {
-    type: 'single-stim',
-    stimulus: stimulus,
-    is_html: true,
-    timing_response: 2000,
-    response_ends_trial: false
-}
-timeline.push(stim_block);
+	var stim_block = {
+		type: 'single-stim',
+		stimulus: stimulus,
+		is_html: true,
+		timing_response: 2000,
+		response_ends_trial: false
+	};
+	timeline.push(stim_block);
 
-var test_block = {
-    type: 'dotWMTask',
-    editable: true,
-    timing_feedback: 2000
-};
-timeline.push(test_block);
+/*
+	var test_block = {
+		type: 'dotWMTask',
+		editable: true,
+		show_feedback: true,
+		timing_feedback: 2000,
+		prompt: '<p>Create the image you just saw. Click two circles to add or remove a line between them. Click submit when you are done.</p>'
+	};
+	timeline.push(test_block);
 
-
-
+*/
 
 jsPsych.init({
     display_element: $('#jspsych-target'),
     timeline: timeline,
-	default_iti: 100,
     on_finish: function() {
 	jsPsych.data.displayData();
 	}

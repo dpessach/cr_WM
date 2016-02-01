@@ -1,0 +1,166 @@
+ 
+<!doctype html>
+<html>
+  <head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/snap.svg-min.js"></script>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-dotWMTask.js"></script>
+    <script src="../plugins/jspsych-single-stim.js"></script>
+    <link rel="stylesheet" href="../css/jspsych.css"></link>
+  </head>
+  <body>
+	 <div id="demo"></div>
+    <div id="jspsych-target"></div>
+  </body>
+  <script>
+    // create a div to hold the generated svg object
+    var stim_div = $('body').append($('<div id="jspsych-dotWMTask-container">'));
+
+    $('#jspsych-dotWMTask-container').append('<svg id="jspsych-dotWMTask-temp-stim" width="' + 1000 + '" height="' + 1000 + '"></svg>');
+
+    // create the snap object
+    var s = Snap("#jspsych-dotWMTask-temp-stim");
+
+    // create the circles and lines
+	
+	var l1 = s.line(100, 100, 400, 100);
+l1.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l2 = s.line(100, 200, 400, 200);
+l2.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l3 = s.line(100, 300, 400, 300);
+l3.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l4 = s.line(100, 400, 400, 400);
+l4.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l5 = s.line(100, 100, 100, 400);
+l5.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l6 = s.line(200, 100, 200, 400);
+l6.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l7 = s.line(300, 100, 300, 400);
+l7.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+var l8 = s.line(400, 100, 400, 400);
+l8.attr({
+    stroke: "#000",
+    strokeWidth: 2
+});
+
+
+//Draw (hidden) circles:
+
+var c1 = s.circle(150, 150, 25);
+c1.attr({
+    opacity: 0
+});
+
+var c2 = s.circle(250, 150, 25);
+c2.attr({
+    opacity: 0
+});
+var c3 = s.circle(350, 150, 25);
+c3.attr({
+    opacity: 0
+});
+var c4 = s.circle(150, 250, 25);
+c4.attr({
+    opacity: 0
+});
+var c5 = s.circle(250, 250, 25);
+c5.attr({
+    opacity: 0
+});
+var c6 = s.circle(350, 250, 25);
+c6.attr({
+    opacity: 0
+});
+var c7 = s.circle(150, 350, 25);
+c7.attr({
+    opacity: 0
+});
+var c8 = s.circle(250, 350, 25);
+c8.attr({
+    opacity: 0
+});
+var c9 = s.circle(350, 350, 25);
+c9.attr({
+    opacity: 0
+});
+
+
+//group all together and center:
+var g = s.group();
+
+g.add(l1, l2, l3, l4, l5, l6, l7, l8, c1, c2, c3, c4, c5, c6, c7, c8, c9);
+
+g.transform('t400,0');
+
+
+ //random selection of dots to show:
+ 
+	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
+	var dotsSelected = jsPsych.randomization.sample(dots, 4, false);
+	
+	
+
+	var configuration = [];
+	for (i in dots) {
+		var d = dots[i]
+		if( $.inArray(d, dotsSelected) != -1){
+			configuration.push(1);
+		} else {
+			configuration.push(0);
+		}
+	};
+
+
+ // actually draw the dots
+   
+    for (var i = 0; i < dotsSelected.length; i++) {
+      var x = dotsSelected[i];
+	  x.attr({
+		  opacity: 1
+	  });
+    };
+
+	/*	
+    var svg = $("#jspsych-dotWMTask-container").html();
+
+    $('#jspsych-dotWMTask-container').remove();
+	
+	
+*/
+
+
+	
+	document.getElementById("demo").innerHTML = dotsSelected.toString();
+	document.getElementById("jspsych-target").innerHTML = configuration.toString();
+	
+	  </script>
+</html>
