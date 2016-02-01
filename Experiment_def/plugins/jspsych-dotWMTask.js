@@ -12,7 +12,7 @@
  * documentation: docs.jspsych.org
  *
  * 
- * Adapted for cr_WM DotWM-Task
+ * Adapted for cr_WM DotWM-Task by Danielle Pessach(January2016)
  */
 
 
@@ -36,7 +36,7 @@ jsPsych.plugins.dotWMTask = (function() {
     trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
 
-    display_element.append($("<svg id='jspsych-dotWMTask-snapCanvas' width='" + 1000 + "' height='" + 1000 + "'></svg>"));
+    display_element.append($("<svg id='jspsych-dotWMTask-snapCanvas' width='" + 500 + "' height='" + 500 + "'></svg>"));
 
     var s = Snap("#jspsych-dotWMTask-snapCanvas");
 
@@ -287,12 +287,12 @@ c3.click(function() {
 
       // check if configuration is correct
       // this is meaningless for trials where the user can't edit
-      var n_diff = arrayDifferences(trial.configuration, dotIsVisible);
+      var n_diff = arrayDifferences(configuration, dotIsVisible);
       var correct = (n_diff === 0);
 
       trial_data = {
         "configuration_by_VP": JSON.stringify(dotIsVisible),
-        "target_configuration": JSON.stringify(trial.configuration),
+        "target_configuration": JSON.stringify(configuration),
         "rt": response_time,
         "correct": correct,
         "num_wrong": n_diff,
@@ -303,7 +303,7 @@ c3.click(function() {
         $('#jspsych-dotWMTask-submitButton').hide();
         $('#jspsych-dotWMTask-prompt').hide();
 
-        showConfiguration(trial.configuration);
+        showConfiguration(configuration);
         var feedback = "";
         if (correct) {
           feedback = "Correct!";

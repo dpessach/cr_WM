@@ -14,17 +14,27 @@
     <div id="jspsych-target"></div>
   </body>
   <script>
-    // create a div to hold the generated svg object
-    var stim_div = $('body').append($('<div id="jspsych-dotWMTask-container">'));
+ // default parameter settings
+    trial.show_feedback = (typeof trial.show_feedback === 'undefined') ? false : trial.show_feedback;
+	trial.n_circles = trial.n_cirles || 4;
+    trial.timing_item = trial.timing_item || 1000;
+    trial.timing_feedback = trial.timing_feedback || 1000;
+    trial.prompt = (typeof trial.prompt === 'undefined') ? "" : trial.prompt;
 
-    $('#jspsych-dotWMTask-container').append('<svg id="jspsych-dotWMTask-temp-stim" width="' + 1000 + '" height="' + 1000 + '"></svg>');
+    // if any trial variables are functions
+    // this evaluates the function and replaces
+    // it with the output of the function
+    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
-    // create the snap object
-    var s = Snap("#jspsych-dotWMTask-temp-stim");
 
-    // create the circles and lines
-	
-	var l1 = s.line(100, 100, 400, 100);
+    display_element.append($("<svg id='jspsych-dotWMTask-snapCanvas' width='" + 500 + "' height='" + 500 + "'></svg>"));
+
+    var s = Snap("#jspsych-dotWMTask-snapCanvas");
+
+// create the circles at the vertices.
+//Draw lines:
+
+var l1 = s.line(100, 100, 400, 100);
 l1.attr({
     stroke: "#000",
     strokeWidth: 2
@@ -114,48 +124,122 @@ c9.attr({
 });
 
 
-//group all together and center:
-var g = s.group();
 
-g.add(l1, l2, l3, l4, l5, l6, l7, l8, c1, c2, c3, c4, c5, c6, c7, c8, c9);
+// let vp draw the circles //Click-Function:
 
-g.transform('t400,0');
-
-
- //random selection of dots to show:
- 
-	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
-	var dotsSelected = jsPsych.randomization.sample(dots, 4, false);
+	var dotIsVisible = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 	
-	
-
-	var configuration = [];
-	for (i in dots) {
-		var d = dots[i]
-		if( $.inArray(d, dotsSelected) != -1){
-			configuration.push(1);
+c1.click(function() {
+		 if (c1.attr("opacity") === "1") {
+		 c1.attr({
+			opacity: 0
+			});
+		dotIsVisible[0] = 0;
 		} else {
-			configuration.push(0);
+		c1.attr({
+			opacity: 1
+			});
+		dotIsVisible[0] = 1;
 		}
-	};
-
-
- // actually draw the dots
-   
-    for (var i = 0; i < dotsSelected.length; i++) {
-      var x = dotsSelected[i];
-	  x.attr({
-		  opacity: 1
-	  });
-    };
-
-	/*	
-    var svg = $("#jspsych-dotWMTask-container").html();
-
-    $('#jspsych-dotWMTask-container').remove();
-	
-	
-*/
+});	
+c2.click(function() {
+		 if (c2.attr("opacity") === "1") {
+		 c2.attr({
+			opacity: 0
+			});
+		dotIsVisible[1] = 0;
+		} else {
+		c2.attr({
+			opacity: 1
+			});
+		dotIsVisible[1] = 1;
+		}
+});	
+c3.click(function() {
+		 if (c3.attr("opacity") === "1") {
+		 c3.attr({
+			opacity: 0
+			});
+		dotIsVisible[2] = 0;
+		} else {
+		c3.attr({
+			opacity: 1
+			});
+		dotIsVisible[2] = 1;
+		}
+});	c4.click(function() {
+		 if (c4.attr("opacity") === "1") {
+		 c4.attr({
+			opacity: 0
+			});
+		dotIsVisible[3] = 0;
+		} else {
+		c4.attr({
+			opacity: 1
+			});
+		dotIsVisible[3] = 1;
+		}
+});	c5.click(function() {
+		 if (c5.attr("opacity") === "1") {
+		 c5.attr({
+			opacity: 0
+			});
+		dotIsVisible[4] = 0;
+		} else {
+		c5.attr({
+			opacity: 1
+			});
+		dotIsVisible[4] = 1;
+		}
+});	c6.click(function() {
+		 if (c6.attr("opacity") === "1") {
+		 c6.attr({
+			opacity: 0
+			});
+		dotIsVisible[5] = 0;
+		} else {
+		c6.attr({
+			opacity: 1
+			});
+		dotIsVisible[5] = 1;
+		}
+});	c7.click(function() {
+		 if (c7.attr("opacity") === "1") {
+		 c7.attr({
+			opacity: 0
+			});
+		dotIsVisible[6] = 0;
+		} else {
+		c7.attr({
+			opacity: 1
+			});
+		dotIsVisible[6] = 1;
+		}
+});	c8.click(function() {
+		 if (c8.attr("opacity") === "1") {
+		 c8.attr({
+			opacity: 0
+			});
+		dotIsVisible[7] = 0;
+		} else {
+		c8.attr({
+			opacity: 1
+			});
+		dotIsVisible[7] = 1;
+		}
+});	c9.click(function() {
+		 if (c9.attr("opacity") === "1") {
+		 c9.attr({
+			opacity: 0
+			});
+		dotIsVisible[8] = 0;
+		} else {
+		c9.attr({
+			opacity: 1
+			});
+		dotIsVisible[8] = 1;
+		}
+});	
 
 
 	
