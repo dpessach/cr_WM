@@ -14,7 +14,7 @@
   <script>
 
 var n_circles = 4;
-
+var configuration = [];
 var stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles);
 var timeline = [];
 
@@ -28,11 +28,19 @@ var timeline = [];
 	};
 	timeline.push(stim_block);
 
+	var inter_block = {
+		type: 'single-stim',
+		stimulus: "blubb",
+		is_html: true,
+		timing_response: 2000,
+		response_ends_trial: false
+	};
+	timeline.push(inter_block);
 
 	var test_block = {
 		type: 'dotWMTask',
 		editable: true,
-		show_feedback: false,
+		show_feedback: true,
 		timing_feedback: 2000,
 		prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
 	};

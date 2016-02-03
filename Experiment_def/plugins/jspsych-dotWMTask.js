@@ -303,15 +303,15 @@ c3.click(function() {
         $('#jspsych-dotWMTask-submitButton').hide();
         $('#jspsych-dotWMTask-prompt').hide();
 
-        showConfiguration(configuration);
+        //showConfiguration(configuration);
         var feedback = "";
         if (correct) {
           feedback = "Correct!";
         } else {
           if (n_diff > 1) {
-            feedback = "You missed " + n_diff + " lines. The correct symbol is shown above.";
+            feedback = "You missed " + n_diff + " dots. The correct symbol is shown above.";
           } else {
-            feedback = "You missed 1 line. The correct symbol is shown above.";
+            feedback = "You missed 1 dot.";
           }
         }
         display_element.append($.parseHTML("<p id='jspsych-dotWMTask-feedback'>" + feedback + "</p>"));
@@ -450,7 +450,7 @@ c9.attr({
  
 	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
 	var dotsSelected = jsPsych.randomization.sample(dots, n_circles, false);
-	var configuration = [];
+
 	for (i in dots) {
 		var d = dots[i]
 		if( $.inArray(d, dotsSelected) != -1){
