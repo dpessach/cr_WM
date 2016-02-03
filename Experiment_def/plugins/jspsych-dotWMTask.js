@@ -287,12 +287,12 @@ c3.click(function() {
 
       // check if configuration is correct
       // this is meaningless for trials where the user can't edit
-      var n_diff = arrayDifferences(configuration, dotIsVisible);
+      var n_diff = arrayDifferences(trial.configuration, dotIsVisible);
       var correct = (n_diff === 0);
 
       trial_data = {
         "configuration_by_VP": JSON.stringify(dotIsVisible),
-        "target_configuration": JSON.stringify(configuration),
+        "target_configuration": JSON.stringify(trial.configuration),
         "rt": response_time,
         "correct": correct,
         "num_wrong": n_diff,
@@ -309,7 +309,7 @@ c3.click(function() {
           feedback = "Correct!";
         } else {
           if (n_diff > 1) {
-            feedback = "You missed " + n_diff + " dots. The correct symbol is shown above.";
+            feedback = "You missed " + n_diff + " dots.";
           } else {
             feedback = "You missed 1 dot.";
           }
@@ -340,7 +340,7 @@ c3.click(function() {
   // method for drawing dotWMTask stimuli.
   // returns the string description of svg element containing the stimulus
 
-  plugin.generate_stimulus = function(n_circles) {
+  plugin.generate_stimulus = function(n_circles, configuration) {
 
    
     // create a div to hold the generated svg object
@@ -444,27 +444,35 @@ c9.attr({
 
 
 
-
-
-    //random selection of dots to show:
- 
-	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
-	var dotsSelected = jsPsych.randomization.sample(dots, n_circles, false);
-
-	for (i in dots) {
-		var d = dots[i]
-		if( $.inArray(d, dotsSelected) != -1){
-			configuration.push(1);
-		} else {
-			configuration.push(0);
-		}
-	};
-
-	
  // actually draw the dots
+   var dotsToToggle = [];
+      
+   for (var i= 0; i < configuration.length; i++){
+	 var index = jQuery.inArray( 1, configuration, i);
+	 if (index === 0) {
+		 dotsToToggle.push(c1);
+	 } else if (index === 1) {
+		 dotsToToggle.push(c2);
+	 } else if (index === 2) {
+		 dotsToToggle.push(c3);
+	 } else if (index === 3) {
+		 dotsToToggle.push(c4);
+	 } else if (index === 4) {
+		 dotsToToggle.push(c5);
+	 } else if (index === 5) {
+		 dotsToToggle.push(c6);
+	 } else if (index === 6) {
+		 dotsToToggle.push(c7);
+	 } else if (index === 7) {
+		 dotsToToggle.push(c8);
+	 } else {
+		 dotsToToggle.push(c9);
+	 }
+   };
    
-    for (var i = 0; i < dotsSelected.length; i++) {
-      var x = dotsSelected[i];
+   
+    for (var i = 0; i < dotsToToggle.length; i++) {
+      var x = dotsToToggle[i];
 	  x.attr({
 		  opacity: 1
 	  });

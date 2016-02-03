@@ -121,7 +121,7 @@ g.add(l1, l2, l3, l4, l5, l6, l7, l8, c1, c2, c3, c4, c5, c6, c7, c8, c9);
 
 g.transform('t400,0');
 
-
+/*
  //random selection of dots to show:
  
 	var dots = [c1, c2, c3, c4, c5, c6, c7, c8, c9];
@@ -138,17 +138,45 @@ g.transform('t400,0');
 			configuration.push(0);
 		}
 	};
-
+*/
 
  // actually draw the dots
+ var configuration = [0, 0, 1, 0, 1, 1, 0, 0, 1];
+ 
+
+var dotsToToggle = [];
+      
+   for (var i= 0; i < configuration.length; i++){
+	 var index = jQuery.inArray( 1, configuration, i);
+	 if (index === 0) {
+		 dotsToToggle.push(c1);
+	 } else if (index === 1) {
+		 dotsToToggle.push(c2);
+	 } else if (index === 2) {
+		 dotsToToggle.push(c3);
+	 } else if (index === 3) {
+		 dotsToToggle.push(c4);
+	 } else if (index === 4) {
+		 dotsToToggle.push(c5);
+	 } else if (index === 5) {
+		 dotsToToggle.push(c6);
+	 } else if (index === 6) {
+		 dotsToToggle.push(c7);
+	 } else if (index === 7) {
+		 dotsToToggle.push(c8);
+	 } else {
+		 dotsToToggle.push(c9);
+	 }
+   };
    
-    for (var i = 0; i < dotsSelected.length; i++) {
-      var x = dotsSelected[i];
+   
+    for (var i = 0; i < dotsToToggle.length; i++) {
+      var x = dotsToToggle[i];
 	  x.attr({
 		  opacity: 1
 	  });
     };
-
+	   
 	/*	
     var svg = $("#jspsych-dotWMTask-container").html();
 
@@ -159,7 +187,7 @@ g.transform('t400,0');
 
 
 	
-	document.getElementById("demo").innerHTML = dotsSelected.toString();
+	document.getElementById("demo").innerHTML = dotsSelected;
 	document.getElementById("jspsych-target").innerHTML = configuration.toString();
 	
 	  </script>

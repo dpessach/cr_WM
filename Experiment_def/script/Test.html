@@ -14,14 +14,27 @@
   <script>
 
 var n_circles = 4;
-var configuration = [];
-var stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles);
+var configs = [];
+var stimuli = [];
 var timeline = [];
+
+//random selection of dots to show:
+ for (k = 0; k < 4; k++) {
+	
+		var prelim_config = [0, 0, 1, 0, 1, 1, 0, 0, 1];
+		var configuration = jsPsych.randomization.shuffle(prelim_config);
+		
+		configs.push(configuration);
+		stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configuration);
+		stimuli.push(stimulus);
+	
+
+
 
 // show target stimulus using single-stim plugin
 	var stim_block = {
 		type: 'single-stim',
-		stimulus: stimulus,
+		stimulus: stimuli[k],
 		is_html: true,
 		timing_response: 2000,
 		response_ends_trial: false
@@ -39,12 +52,15 @@ var timeline = [];
 
 	var test_block = {
 		type: 'dotWMTask',
+		configuration: configs[k],
 		editable: true,
 		show_feedback: true,
 		timing_feedback: 2000,
 		prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
 	};
 	timeline.push(test_block);
+};
+
 /*
 */
 
