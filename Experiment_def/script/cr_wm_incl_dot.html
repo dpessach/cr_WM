@@ -114,7 +114,7 @@ var stimlistNA = [];
 		}
 	}
 	
-document.getElementById("demo2").innerHTML = stimlistNA;
+
 
 	
 //Decodierung für Präsentation:
@@ -299,7 +299,7 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 		type: 'single-stim',
 		stimulus: stimuli_dots[k],
 		is_html: true,
-		timing_response: 2000,
+		timing_response: 1000,
 		response_ends_trial: false
 	};
 	timeline.push(stim_block);
@@ -316,18 +316,32 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 	}
 	timeline.push(cr_trial);
 
-	var test_block = {
-		type: 'dotWMTask',
-		configuration: configs[k],
-		editable: true,
-		show_feedback: true,
-		timing_feedback: 2000,
-		prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
-	};
-	timeline.push(test_block);
+	
+//Conditional test block:
+	
+	if(configs[k] === [0, 0, 0, 0, 0, 0, 0, 0, 0];){
+		var test_block_sham = {
+			type: 'single-stim',
+			stimulus: stimuli_dots[k],
+			is_html: true,
+			timing_response: 1000,
+			response_ends_trial: false
+		};
+		timeline.push(test_block_sham);
+	} else {
+		var test_block = {
+			type: 'dotWMTask',
+			configuration: configs[k],
+			editable: true,
+			show_feedback: true,
+			timing_feedback: 2000,
+			prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
+		};
+		timeline.push(test_block);
+	}
 }
   
-/*		*/
+	
 
 	
 	
