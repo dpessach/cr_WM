@@ -266,8 +266,8 @@ document.getElementById("demo3").innerHTML = stimlistModus;
 
 //Trials:
 
-for (k = 0; k < 3; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
-
+for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
+/* */   
 //random selection of dots to show:
 		var prelim_config = [0, 0, 1, 0, 1, 1, 0, 0, 1];
 		var configuration = jsPsych.randomization.shuffle(prelim_config);
@@ -276,6 +276,21 @@ for (k = 0; k < 3; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
 		stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configuration);
 		stimuli_dots.push(stimulus);
 	
+//change configuration to 0 if no WML:
+
+	for (i=0; i< stimlistModus.length; i++) {
+		if (stimlistModus[i] === "1_MP" || stimlistModus[i] === "1_MP_'" 
+			|| stimlistModus[i] === "3_MP" || stimlistModus[i] === "3_MP_'"
+			|| stimlistModus[i] === "1_AC" || stimlistModus[i] === "1_AC_'"
+			|| stimlistModus[i] === "2_AC" || stimlistModus[i] === "2_AC_'"
+			|| stimlistModus[i] === "2_MT" || stimlistModus[i] === "2_MT_'" 
+			|| stimlistModus[i] === "4_MT" || stimlistModus[i] === "4_MT_'" 
+			|| stimlistModus[i] === "3_DA" || stimlistModus[i] === "3_DA_'"
+			|| stimlistModus[i] === "4_DA" || stimlistModus[i] === "4_DA_'") {
+				configs[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+				stimuli_dots[i] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[i]);
+			}
+	}
 
 
 
@@ -288,19 +303,19 @@ for (k = 0; k < 3; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
 		response_ends_trial: false
 	};
 	timeline.push(stim_block);
-    
+
 	var cr_trial = {
 		type: 'similarity',
 		is_html: true,
-		stimuli: [[stimlist[i]]],
+		stimuli: [stimlist[k]],
 		timing_first_stim: -1,
 		intervals: 100,
 		show_ticks: true,
-		data: {Modus: stimlistModus[i]},
+		data: {Modus: stimlistModus[k]},
 		labels: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
 	}
 	timeline.push(cr_trial);
-	
+
 	var test_block = {
 		type: 'dotWMTask',
 		configuration: configs[k],
@@ -312,7 +327,7 @@ for (k = 0; k < 3; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
 	timeline.push(test_block);
 }
   
-/*	*/
+/*		*/
 
 	
 	

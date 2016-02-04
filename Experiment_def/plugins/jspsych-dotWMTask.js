@@ -465,9 +465,9 @@ c9.attr({
 		 dotsToToggle.push(c7);
 	 } else if (index === 7) {
 		 dotsToToggle.push(c8);
-	 } else {
+	 } else if (index === 8) {
 		 dotsToToggle.push(c9);
-	 }
+	 } else {}
    };
    
    

@@ -15,18 +15,19 @@
 
 var n_circles = 4;
 var configs = [];
-var stimuli = [];
+var stimuli_dots = [];
 var timeline = [];
 
+
+ for (k = 0; k < 3; k++) {
+
 //random selection of dots to show:
- for (k = 0; k < 4; k++) {
-	
 		var prelim_config = [0, 0, 1, 0, 1, 1, 0, 0, 1];
 		var configuration = jsPsych.randomization.shuffle(prelim_config);
 		
 		configs.push(configuration);
 		stimulus = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configuration);
-		stimuli.push(stimulus);
+		stimuli_dots.push(stimulus);
 	
 
 
@@ -34,7 +35,7 @@ var timeline = [];
 // show target stimulus using single-stim plugin
 	var stim_block = {
 		type: 'single-stim',
-		stimulus: stimuli[k],
+		stimulus: stimuli_dots[k],
 		is_html: true,
 		timing_response: 2000,
 		response_ends_trial: false
