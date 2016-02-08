@@ -307,12 +307,12 @@ c3.click(function() {
 
         var feedback = "";
         if (correct) {
-          feedback = "Correct!";
+          feedback = "Korrekt!";
         } else {
           if (n_diff > 1) {
-            feedback = "You missed " + n_diff + " dots.";
+            feedback = "" + n_diff + " Fehler.";
           } else {
-            feedback = "You missed 1 dot.";
+            feedback = "1 Fehler.";
           }
         }
 	   display_element.append($.parseHTML("<p id='jspsych-dotWMTask-feedback'>" + feedback + "</p>"));
