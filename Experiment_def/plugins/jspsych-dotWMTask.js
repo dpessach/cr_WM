@@ -304,18 +304,20 @@ c3.click(function() {
         $('#jspsych-dotWMTask-prompt').hide();
 
         //showConfiguration(configuration);
+
         var feedback = "";
         if (correct) {
-          feedback = "Correct!";
+          feedback = "Korrekt!";
         } else {
           if (n_diff > 1) {
-            feedback = "You missed " + n_diff + " dots.";
+            feedback = "" + n_diff + " Fehler.";
           } else {
-            feedback = "You missed 1 dot.";
+            feedback = "1 Fehler.";
           }
         }
-        display_element.append($.parseHTML("<p id='jspsych-dotWMTask-feedback'>" + feedback + "</p>"));
-
+	   display_element.append($.parseHTML("<p id='jspsych-dotWMTask-feedback'>" + feedback + "</p>"));
+	
+	
         setTimeout(function() {
           next_trial();
         }, trial.timing_feedback);

@@ -8,6 +8,7 @@
 	<script src="../plugins/jspsych-dotWMTask.js"></script>
 	<script src="../plugins/jspsych-single-stim.js"></script>
     <script src="../plugins/jspsych-similarity_for_cr_wm.js"></script>
+	<script src="../plugins/jspsych-text.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css"></link>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
     <style>
@@ -91,7 +92,7 @@ sB2 = jsPsych.randomization.shuffle(B2);
 stimlistCode.push(sB1);
 stimlistCode.push(sB2);
 
-//document.getElementById("demo1").innerHTML = stimlistCode;
+
 
 //Creating Array only with strings (NoArrays):
 
@@ -114,76 +115,76 @@ var stimlistNA = [];
 		}
 	}
 	
-
+//document.getElementById("demo2").innerHTML = stimlistNA;
 
 	
 //Decodierung für Präsentation:
 for (i= 0; i < stimlistNA.length; i++) {
 	xi = stimlistNA[i];
 	if (xi == "1p_q") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: A.</p><p> Konklusion: Also B.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p><p> Konklusion: Also geht es auf Suche nach Beute.</p>");
 	} else if (xi === "1p_nq") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: A.</p><p> Konklusion: Also !B.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p><p> Konklusion: Also geht es nicht auf Suche nach Beute.</p>");
 	} else if (xi === "1nq_np") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !B.</p><p> Konklusion: Also !A.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht nicht auf Suche nach Beute.</p><p> Konklusion: Also hat es keinen Hunger.</p>");
 	} else if (xi === "1nq_p") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !B.</p><p> Konklusion: Also A.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht nicht auf Suche nach Beute.</p><p> Konklusion: Also hat es Hunger.</p>");
 	} else if (xi === "1q_p") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: B.</p><p> Konklusion: Also A.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p><p> Konklusion: Also hat es Hunger.</p>");
 	} else if (xi === "1q_np") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: B.</p><p> Konklusion: Also !A.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p><p> Konklusion: Also hat es keinen Hunger.</p>");
 	} else if (xi === "1np_nq") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !A.</p><p> Konklusion: Also !B.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat keinen Hunger.</p><p> Konklusion: Also geht es nicht auf Suche nach Beute.</p>");
 	} else if (xi === "1np_q") {
-	stimlist.push("<p>Wenn A dann B.</p><p> Beobachtung: !A.</p><p> Konklusion: Also B.</p>");
+	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat keinen Hunger.</p><p> Konklusion: Also geht es auf Suche nach Beute.</p>");
 	} else if (xi === "2p_q") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: C.</p><p> Konklusion: Also D.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er schnell an Luft.</p>");
 	} else if (xi === "2p_nq") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: C.</p><p> Konklusion: Also !D.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er nicht schnell an Luft.</p>");
 	} else if (xi === "2nq_np") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !D.</p><p> Konklusion: Also !C.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert nicht schnell an Luft.</p><p> Konklusion: Also wurde er nicht mit einer Nadel gestochen.</p>");
 	} else if (xi === "2nq_p") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !D.</p><p> Konklusion: Also C.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert nicht schnell an Luft.</p><p> Konklusion: Also wurde er mit einer Nadel gestochen.</p>");
 	} else if (xi === "2q_p") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: D.</p><p> Konklusion: Also C.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Konklusion: Also wurde er mit einer Nadel gestochen.</p>");
 	} else if (xi === "2q_np") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: D.</p><p> Konklusion: Also !C.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Konklusion: Also wurde er nicht mit einer Nadel gestochen.</p>");
 	} else if (xi === "2np_nq") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !C.</p><p> Konklusion: Also !D.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde nicht mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er nicht schnell an Luft.</p>");
 	} else if (xi === "2np_q") {
-	stimlist.push("<p>Wenn C dann D.</p><p> Beobachtung: !C.</p><p> Konklusion: Also D.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde nicht mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er schnell an Luft.</p>");
 	} else if (xi === "3p_q") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: E.</p><p> Konklusion: Also F.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es schwanger.</p>");
 	} else if (xi === "3p_nq") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: E.</p><p> Konklusion: Also !F.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es nicht schwanger.</p>");
 	} else if (xi === "3nq_np") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !F.</p><p> Konklusion: Also !E.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist nicht schwanger.</p><p> Konklusion: Also hat es keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
 	} else if (xi === "3nq_p") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !F.</p><p> Konklusion: Also E.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist nicht schwanger.</p><p> Konklusion: Also hat es Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
 	} else if (xi === "3q_p") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: F.</p><p> Konklusion: Also E.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Konklusion: Also hat es Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
 	} else if (xi === "3q_np") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: F.</p><p> Konklusion: Also !E.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Konklusion: Also hat es keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
 	} else if (xi === "3np_nq") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !E.</p><p> Konklusion: Also !F.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es nicht schwanger.</p>");
 	} else if (xi === "3np_q") {
-	stimlist.push("<p>Wenn E dann F.</p><p> Beobachtung: !E.</p><p> Konklusion: Also F.</p>");
+	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es schwanger.</p>");
 	} else if (xi === "4p_q") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: G.</p><p> Konklusion: Also H.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt viel Cola.</p><p> Konklusion: Also nimmt sie an Gewicht zu.</p>");
 	} else if (xi === "4p_nq") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: G.</p><p> Konklusion: Also !H.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt viel Cola.</p><p> Konklusion: Also nimmt sie nicht an Gewicht zu.</p>");
 	} else if (xi === "4nq_np") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !H.</p><p> Konklusion: Also !G.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt nicht an Gewicht zu.</p><p> Konklusion: Also trinkt sie nicht viel Cola.</p>");
 	} else if (xi === "4nq_p") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !H.</p><p> Konklusion: Also G.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt nicht an Gewicht zu.</p><p> Konklusion: Also trinkt sie viel Cola.</p>");
 	} else if (xi === "4q_p") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: H.</p><p> Konklusion: Also G.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p> Konklusion: Also trinkt sie viel Cola.</p>");
 	} else if (xi === "4q_np") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: H.</p><p> Konklusion: Also !G.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p> Konklusion: Also trinkt sie nicht viel Cola.</p>");
 	} else if (xi === "4np_nq") {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !G.</p><p> Konklusion: Also !H.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt nicht viel Cola.</p><p> Konklusion: Also nimmt sie nicht an Gewicht zu.</p>");
 	} else {
-	stimlist.push("<p>Wenn G dann H.</p><p> Beobachtung: !G.</p><p> Konklusion: Also H.</p>");
+	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt nicht viel Cola.</p><p> Konklusion: Also nimmt sie an Gewicht zu.</p>");
 	} 
 }
 
@@ -258,13 +259,143 @@ for (i= 0; i < stimlistNA.length; i++) {
 	}
 }
 
-document.getElementById("demo3").innerHTML = stimlistModus;
+//document.getElementById("demo3").innerHTML = stimlistModus;
 
 
+//*****************************************************//////////////////*****************************************************
+//*****************************************************// Probetrials: //*****************************************************
+//*****************************************************//////////////////*****************************************************
+
+var Intro1 = {
+	type: 'text',
+	text: '<p>Willkommen zum Experiment.</p><p></p><p>Vielen Dank, dass Sie sich die Zeit nehmen Bla bla.</p>' +
+	'<p>Die ersten drei Durchg&aumlnge sind &Uumlbungsdurchg&aumlnge. Bei den ersten zwei werden Sie sich jeweils die Position der vier Punkte merken m&uumlssen, '+
+	'beim dritten &Uumlbungsdurchgang nicht (es erscheint nur ein leeres Gitter).</p>' +
+	'<p>Dr&uumlcken Sie eine beliebige Taste um zu den &Uumlbungsdurchg&aumlngen zu gelangen</p>'
+}
+timeline.push(Intro1);
 
 
+var c1 = [0, 0, 1, 0, 1, 1, 0, 0, 1];
+var s1 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c1);
+var c2 = [1, 0, 1, 0, 0, 1, 1, 0, 0];
+var s2 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c2);
+var c3 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var s3 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c3); 
+var cr1 = '<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist so, wie er heisst.</p><p> Konklusion: Also kommt am Samstag das Sams.</p>';
+var cr2 = "<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist nicht so, wie er heisst.</p><p> Konklusion: Also kommt am Samstag das Sams nicht.</p>";
+var cr3 = "<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Am Samstag kommt das Sams.</p><p> Konklusion: Also ist jeder Tag so, wie er heisst.</p>";
+var cr = [cr1, cr2, cr3];
 
-//Trials:
+
+	var pb1_1 = {
+		type: 'single-stim',
+		stimulus: s1,
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false
+	}
+	timeline.push(pb1_1);
+
+
+	var pb1_2 = {
+		type: 'similarity',
+		is_html: true,
+		stimuli: [cr1],
+		timing_first_stim: -1,
+		intervals: 100,
+		show_ticks: true,
+		labels: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+	}
+	timeline.push(pb1_2);
+
+
+	var pb1_3 = {
+		type: 'dotWMTask',
+		configuration: c1,
+		editable: true,
+		show_feedback: true,
+		timing_feedback: 2000,
+		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
+	}
+	timeline.push(pb1_3);
+
+	var pb2_1 = {
+		type: 'single-stim',
+		stimulus: s2,
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false
+	}
+	timeline.push(pb2_1);
+
+
+	var pb2_2 = {
+		type: 'similarity',
+		is_html: true,
+		stimuli: [cr2],
+		timing_first_stim: -1,
+		intervals: 100,
+		show_ticks: true,
+		labels: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+	}
+	timeline.push(pb2_2);
+
+
+	var pb2_3 = {
+		type: 'dotWMTask',
+		configuration: c2,
+		editable: true,
+		show_feedback: true,
+		timing_feedback: 2000,
+		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
+	}
+	timeline.push(pb2_3);
+
+	var pb3_1 = {
+		type: 'single-stim',
+		stimulus: s3,
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false
+	}
+	timeline.push(pb3_1);
+
+
+	var pb3_2 = {
+		type: 'similarity',
+		is_html: true,
+		stimuli: [cr3],
+		timing_first_stim: -1,
+		intervals: 100,
+		show_ticks: true,
+		labels: ["0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+	}
+	timeline.push(pb3_2);
+	
+	var pb3_3 = {
+		type: 'single-stim',
+		stimulus: s3,
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false,
+	}
+	timeline.push(pb3_3);
+/*
+*/
+
+var Intro2 = {
+	type: 'text',
+	text: '<p>Nun geht es los mit den Test-Durchg&aumlngen.</p>' +
+	'<p>Bitte bearbeiten Sie alle Durchg&aumlnge ohne Unterbruch.</p><p></p>' +
+	'<p>Dr&uumlcken Sie eine beliebige Taste, um zu starten.</p>'
+}
+timeline.push(Intro2);
+
+
+//*****************************************************//////////////////*****************************************************
+//*****************************************************//   Trials:    //*****************************************************
+//*****************************************************//////////////////*****************************************************
 
 for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
 /* */   
@@ -278,21 +409,22 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 	
 //change configuration to 0 if no WML:
 
-	for (i=0; i< stimlistModus.length; i++) {
-		if (stimlistModus[i] === "1_MP" || stimlistModus[i] === "1_MP_'" 
-			|| stimlistModus[i] === "3_MP" || stimlistModus[i] === "3_MP_'"
-			|| stimlistModus[i] === "1_AC" || stimlistModus[i] === "1_AC_'"
-			|| stimlistModus[i] === "2_AC" || stimlistModus[i] === "2_AC_'"
-			|| stimlistModus[i] === "2_MT" || stimlistModus[i] === "2_MT_'" 
-			|| stimlistModus[i] === "4_MT" || stimlistModus[i] === "4_MT_'" 
-			|| stimlistModus[i] === "3_DA" || stimlistModus[i] === "3_DA_'"
-			|| stimlistModus[i] === "4_DA" || stimlistModus[i] === "4_DA_'") {
-				configs[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-				stimuli_dots[i] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[i]);
-			}
+
+	if (stimlistModus[k] === "1_MP" || stimlistModus[k] === "1_MP_'" 
+		|| stimlistModus[k] === "3_MP" || stimlistModus[k] === "3_MP_'"
+		|| stimlistModus[k] === "1_AC" || stimlistModus[k] === "1_AC_'"
+		|| stimlistModus[k] === "2_AC" || stimlistModus[k] === "2_AC_'"
+		|| stimlistModus[k] === "2_MT" || stimlistModus[k] === "2_MT_'" 
+		|| stimlistModus[k] === "4_MT" || stimlistModus[k] === "4_MT_'" 
+		|| stimlistModus[k] === "3_DA" || stimlistModus[k] === "3_DA_'"
+		|| stimlistModus[k] === "4_DA" || stimlistModus[k] === "4_DA_'") {
+			configs[k] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+			stimuli_dots[k] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[k]);
 	}
 
+}
 
+for (k = 0; k < stimlistModus.length; k++) {	
 
 // show target stimulus using single-stim plugin
 	var stim_block = {
@@ -301,9 +433,10 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 		is_html: true,
 		timing_response: 1000,
 		response_ends_trial: false
-	};
+	}
 	timeline.push(stim_block);
 
+//show conditional
 	var cr_trial = {
 		type: 'similarity',
 		is_html: true,
@@ -316,35 +449,86 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 	}
 	timeline.push(cr_trial);
 
-	
-//Conditional test block:
-	
-	if(configs[k] === [0, 0, 0, 0, 0, 0, 0, 0, 0];){
-		var test_block_sham = {
-			type: 'single-stim',
-			stimulus: stimuli_dots[k],
-			is_html: true,
-			timing_response: 1000,
-			response_ends_trial: false
-		};
-		timeline.push(test_block_sham);
-	} else {
-		var test_block = {
-			type: 'dotWMTask',
-			configuration: configs[k],
-			editable: true,
-			show_feedback: true,
-			timing_feedback: 2000,
-			prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
-		};
-		timeline.push(test_block);
+
+//show empty grid to modify or not
+
+
+	var test_block = {
+		type: 'dotWMTask',
+		configuration: configs[k],
+		editable: true,
+		show_feedback: true,
+		timing_feedback: 2000,
+		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
 	}
-}
-  
-	
 
 	
 	
+	var empty_block = {
+		type: 'single-stim',
+		stimulus: stimuli_dots[k],
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false,
+	}
+	
+
+
+var if_node_test = {
+    timeline: [test_block],
+    conditional_function: function(){
+		var data = jsPsych.data.getLastTrialData();
+        if (data.Modus === "1_MP" || data.Modus === "1_MP_'" 
+			|| data.Modus === "3_MP" || data.Modus === "3_MP_'"
+			|| data.Modus === "1_AC" || data.Modus === "1_AC_'"
+			|| data.Modus === "2_AC" || data.Modus === "2_AC_'"
+			|| data.Modus === "2_MT" || data.Modus === "2_MT_'" 
+			|| data.Modus === "4_MT" || data.Modus === "4_MT_'" 
+			|| data.Modus === "3_DA" || data.Modus === "3_DA_'"
+			|| data.Modus === "4_DA" || data.Modus === "4_DA_'") {
+			return false;
+		} else {
+			return true;
+		}
+    }
+}
+timeline.push(if_node_test);
+
+var if_node_empty = {
+    timeline: [empty_block],
+    conditional_function: function(){
+        var data = jsPsych.data.getLastTrialData();
+        if (data.Modus === "1_MP" || data.Modus === "1_MP_'" 
+			|| data.Modus === "3_MP" || data.Modus === "3_MP_'"
+			|| data.Modus === "1_AC" || data.Modus === "1_AC_'"
+			|| data.Modus === "2_AC" || data.Modus === "2_AC_'"
+			|| data.Modus === "2_MT" || data.Modus === "2_MT_'" 
+			|| data.Modus === "4_MT" || data.Modus === "4_MT_'" 
+			|| data.Modus === "3_DA" || data.Modus === "3_DA_'"
+			|| data.Modus === "4_DA" || data.Modus === "4_DA_'") {
+			return true;
+		} else {
+			return false;
+		}
+    }
+}
+timeline.push(if_node_empty);
+	
+var inter_block = {
+	type: 'text',
+    text: 'F&uumlr den N&aumlchsten Durchgang beliebige Taste dr&uumlcken'
+}
+
+if (k !== 31) {
+timeline.push(inter_block);
+}
+
+  
+/*			*/
+
+}	
+
+
   var vp_ID = jsPsych.randomization.randomID(6);
     jsPsych.data.addProperties({VP: vp_ID})
   var date = (new Date());

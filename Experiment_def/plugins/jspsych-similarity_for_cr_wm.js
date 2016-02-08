@@ -193,8 +193,7 @@ jsPsych.plugins.similarity = (function() {
         var score = $("#slider").slider("value");
         var trial_data = {
           "score": score,
-          "rt": response_time,
-          "stimulus": JSON.stringify([trial.stimuli[0], trial.stimuli[1]])
+          "rt": response_time
         };
         // goto next trial in block
         display_element.html('');
