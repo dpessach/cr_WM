@@ -278,19 +278,19 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 	
 //change configuration to 0 if no WML:
 
-	for (i=0; i< stimlistModus.length; i++) {
-		if (stimlistModus[i] === "1_MP" || stimlistModus[i] === "1_MP_'" 
-			|| stimlistModus[i] === "3_MP" || stimlistModus[i] === "3_MP_'"
-			|| stimlistModus[i] === "1_AC" || stimlistModus[i] === "1_AC_'"
-			|| stimlistModus[i] === "2_AC" || stimlistModus[i] === "2_AC_'"
-			|| stimlistModus[i] === "2_MT" || stimlistModus[i] === "2_MT_'" 
-			|| stimlistModus[i] === "4_MT" || stimlistModus[i] === "4_MT_'" 
-			|| stimlistModus[i] === "3_DA" || stimlistModus[i] === "3_DA_'"
-			|| stimlistModus[i] === "4_DA" || stimlistModus[i] === "4_DA_'") {
-				configs[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-				stimuli_dots[i] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[i]);
+	//for (i=0; i< stimlistModus.length; i++) {
+		if (stimlistModus[k] === "1_MP" || stimlistModus[k] === "1_MP_'" 
+			|| stimlistModus[k] === "3_MP" || stimlistModus[k] === "3_MP_'"
+			|| stimlistModus[k] === "1_AC" || stimlistModus[k] === "1_AC_'"
+			|| stimlistModus[k] === "2_AC" || stimlistModus[k] === "2_AC_'"
+			|| stimlistModus[k] === "2_MT" || stimlistModus[k] === "2_MT_'" 
+			|| stimlistModus[k] === "4_MT" || stimlistModus[k] === "4_MT_'" 
+			|| stimlistModus[k] === "3_DA" || stimlistModus[k] === "3_DA_'"
+			|| stimlistModus[k] === "4_DA" || stimlistModus[k] === "4_DA_'") {
+				configs[k] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+				stimuli_dots[k] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[k]);
 			}
-	}
+	//}
 
 
 
@@ -301,9 +301,10 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 		is_html: true,
 		timing_response: 2000,
 		response_ends_trial: false
-	};
+	}
 	timeline.push(stim_block);
 
+//show conditional
 	var cr_trial = {
 		type: 'similarity',
 		is_html: true,
@@ -316,6 +317,10 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 	}
 	timeline.push(cr_trial);
 
+
+//show empty grid to modify or not
+
+
 	var test_block = {
 		type: 'dotWMTask',
 		configuration: configs[k],
@@ -323,13 +328,47 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 		show_feedback: true,
 		timing_feedback: 2000,
 		prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
-	};
-	timeline.push(test_block);
+	}
+	
+	var empty_block = {
+		type: 'single-stim',
+		stimulus: stimuli_dots[k],
+		is_html: true,
+		timing_response: 1000,
+		response_ends_trial: false
+	}
+	//timeline.push(stim_block);
+
+
+var if_node_test = {
+    timeline: [test_block],
+    conditional_function: function(){
+        if (configs[k] == [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
+			return false;
+		} else {
+			return true;
+		}
+    }
 }
+timeline.push(if_node_test);
+
+var if_node_empty = {
+    timeline: [empty_block],
+    conditional_function: function(){
+        if (configs[k] !== [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
+			return false;
+		} else {
+			return true;
+		}
+    }
+}
+timeline.push(if_node_empty);
+	
+
   
 /*		*/
 
-	
+}	
 	
   var vp_ID = jsPsych.randomization.randomID(6);
     jsPsych.data.addProperties({VP: vp_ID})
