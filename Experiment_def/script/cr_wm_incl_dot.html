@@ -91,7 +91,7 @@ sB2 = jsPsych.randomization.shuffle(B2);
 stimlistCode.push(sB1);
 stimlistCode.push(sB2);
 
-//document.getElementById("demo1").innerHTML = stimlistCode;
+
 
 //Creating Array only with strings (NoArrays):
 
@@ -114,7 +114,7 @@ var stimlistNA = [];
 		}
 	}
 	
-document.getElementById("demo2").innerHTML = stimlistNA;
+//document.getElementById("demo2").innerHTML = stimlistNA;
 
 	
 //Decodierung für Präsentation:
@@ -258,7 +258,7 @@ for (i= 0; i < stimlistNA.length; i++) {
 	}
 }
 
-document.getElementById("demo3").innerHTML = stimlistModus;
+//document.getElementById("demo3").innerHTML = stimlistModus;
 
 
 
@@ -291,8 +291,9 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 				stimuli_dots[k] = jsPsych.plugins.dotWMTask.generate_stimulus(n_circles, configs[k]);
 			}
 	//}
+}
 
-
+for (k = 0; k < stimlistModus.length; k++) {	
 
 // show target stimulus using single-stim plugin
 	var stim_block = {
@@ -329,21 +330,31 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 		timing_feedback: 2000,
 		prompt: '<p>Create the image you just saw. Click submit when you are done.</p>'
 	}
+
+	
 	
 	var empty_block = {
 		type: 'single-stim',
 		stimulus: stimuli_dots[k],
 		is_html: true,
-		timing_response: 1000,
-		response_ends_trial: false
+		timing_response: 2000,
+		response_ends_trial: false,
 	}
-	//timeline.push(stim_block);
+	
 
 
 var if_node_test = {
     timeline: [test_block],
     conditional_function: function(){
-        if (configs[k] == [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
+		var data = jsPsych.data.getLastTrialData();
+        if (data.Modus === "1_MP" || data.Modus === "1_MP_'" 
+			|| data.Modus === "3_MP" || data.Modus === "3_MP_'"
+			|| data.Modus === "1_AC" || data.Modus === "1_AC_'"
+			|| data.Modus === "2_AC" || data.Modus === "2_AC_'"
+			|| data.Modus === "2_MT" || data.Modus === "2_MT_'" 
+			|| data.Modus === "4_MT" || data.Modus === "4_MT_'" 
+			|| data.Modus === "3_DA" || data.Modus === "3_DA_'"
+			|| data.Modus === "4_DA" || data.Modus === "4_DA_'") {
 			return false;
 		} else {
 			return true;
@@ -355,10 +366,18 @@ timeline.push(if_node_test);
 var if_node_empty = {
     timeline: [empty_block],
     conditional_function: function(){
-        if (configs[k] !== [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
-			return false;
-		} else {
+        var data = jsPsych.data.getLastTrialData();
+        if (data.Modus === "1_MP" || data.Modus === "1_MP_'" 
+			|| data.Modus === "3_MP" || data.Modus === "3_MP_'"
+			|| data.Modus === "1_AC" || data.Modus === "1_AC_'"
+			|| data.Modus === "2_AC" || data.Modus === "2_AC_'"
+			|| data.Modus === "2_MT" || data.Modus === "2_MT_'" 
+			|| data.Modus === "4_MT" || data.Modus === "4_MT_'" 
+			|| data.Modus === "3_DA" || data.Modus === "3_DA_'"
+			|| data.Modus === "4_DA" || data.Modus === "4_DA_'") {
 			return true;
+		} else {
+			return false;
 		}
     }
 }
@@ -366,10 +385,11 @@ timeline.push(if_node_empty);
 	
 
   
-/*		*/
+/*			*/
 
 }	
-	
+
+
   var vp_ID = jsPsych.randomization.randomID(6);
     jsPsych.data.addProperties({VP: vp_ID})
   var date = (new Date());
