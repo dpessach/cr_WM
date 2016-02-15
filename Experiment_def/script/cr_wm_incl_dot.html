@@ -296,7 +296,7 @@ for (i= 0; i < stimlistNA.length; i++) {
 //*****************************************************// Instuctons:  //*****************************************************
 //*****************************************************//////////////////*****************************************************
 
-
+/*
 
 var instr1 = {
 	type: 'instructions',
@@ -306,7 +306,7 @@ var instr1 = {
 	"<p>Vielen Dank, dass Sie sich die Zeit nehmen, um an unserem Versuch teilzunehmen. "+
 	"Bei den folgenden Aufgaben pr&aumlsentieren wir Ihnen jeweils eine Regel sowie eine damit zusammenh&aumlngende Beobachtung. Ihre Aufgabe ist es "+
 	"einzusch&aumltzen, mit welcher Wahrscheinlichkeit eine bestimmte Folgerung zutrifft.</p>" +
-	"<p style='line-height: 3.8; text-decoration: underline;'>Ein Beispiel:</p><p style='line-height: 0.5;'>Regel: Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
+	"<p style='line-height: 3.8; text-decoration: underline;'>Ein Beispiel:</p><p style='line-height: 0.5;'> Regel: Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
 	"<p style='line-height: 0.5;'>Beobachtung: Eine Person hat KEINE Grippe.</p>"+
 	"<p style='line-height: 0.5;'>Wie gross sch&aumltzen Sie die Wahrscheinlichkeit, dass die Person Fieber hat? </p>"+
 	"<p>Sie m&uumlssen Ihre Bewertung jeweils auf einer Skala von 0 bis 100 Prozent angeben:</p><p><img src='slider.png' style='width:800px;height:80px'></img>"+
@@ -316,7 +316,7 @@ var instr1 = {
 	"<p style='text-decoration: underline;line-height: 3.5;'>Noch ein Hinweis:</p><p>F&uumlr jede Beobachtung wird die Antwort zweimal erfragt und zwar, verteilt auf zwei "+
 	"Aufgabenbl&oumlcke, einmal <b>positiv</b> formuliert und einmal <b>negativ</b> formuliert.</p>"+
 	"<p style='line-height: 3.8; text-decoration: underline;'>Ein Beispiel:</p>"+
-	"<p style='text-indent: 50px; line-height: 0.5;'>Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
+	"<p style='text-indent: 50px; line-height: 0.5;'>Regel: Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
 	"<p style='text-indent: 50px; line-height: 0.5;'>Beobachtung: Eine Person hat Grippe.</p>"+
 	"<p style='text-indent: 50px; line-height: 0.5;'>Wie gross sch&aumltzen Sie die Wahrscheinlichkeit, ...</p>"+
 	"<p style='text-indent: 100px;'>. . . dass die Person Fieber hat? (<i>positive</i> Formulierung)</p>"+
@@ -338,12 +338,12 @@ var instr1 = {
 }
 timeline.push(instr1);
 
-
+*/
 
 //*****************************************************//////////////////*****************************************************
 //*****************************************************// Probetrials: //*****************************************************
 //*****************************************************//////////////////*****************************************************
-
+/*
 var c1 = [0, 0, 1, 0, 1, 1, 0, 0, 1];
 var s1 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c1);
 var c2 = [1, 0, 1, 0, 0, 1, 1, 0, 0];
@@ -384,7 +384,8 @@ var cr = [cr1, cr2, cr3];
 		editable: true,
 		show_feedback: true,
 		timing_feedback: 750,
-		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
+		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.</p>'+
+		'<p>Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang.</p>'
 	}
 	timeline.push(pb1_3);
 
@@ -416,7 +417,8 @@ var cr = [cr1, cr2, cr3];
 		editable: true,
 		show_feedback: true,
 		timing_feedback: 750,
-		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
+		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.</p>'+
+		'<p>Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang.</p>'
 	}
 	timeline.push(pb2_3);
 
@@ -493,7 +495,7 @@ for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stiml
 
 }
 
-for (k = 0; k < stimlistModus.length; k++) {	
+for (k = 0; k < 3; k++) {	
 
 // show target stimulus using single-stim plugin
 	var stim_block = {
@@ -526,20 +528,22 @@ for (k = 0; k < stimlistModus.length; k++) {
 		type: 'dotWMTask',
 		configuration: configs[k],
 		editable: true,
-		show_feedback: true,
+		show_feedback: false,
 		timing_feedback: 750,
-		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.'+
-		'Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang. </p>'
+		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.</p>'+
+		'<p>Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang.</p>'
 	}
 
 	
 	
 	var empty_block = {
-		type: 'single-stim',
-		stimulus: stimuli_dots[k],
-		is_html: true,
-		timing_response: 750,
-		response_ends_trial: false,
+		type: 'dotWMTask',
+		configuration: configs[k],
+		editable: true,
+		show_feedback: false,
+		timing_feedback: 750,
+		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.</p>'+
+		'<p>Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang.</p>'
 	}
 	
 
@@ -583,10 +587,13 @@ var if_node_empty = {
     }
 }
 timeline.push(if_node_empty);
-	
+/*		
 var inter_block = {
-	type: 'text',
-    text: 'F&uumlr den N&aumlchsten Durchgang beliebige Taste dr&uumlcken.'
+	type: 'single-stim',
+	is_html: true,
+    stimulus: 'N&aumlchster Durchgang startet.'
+	timing_response: 500,
+	response_ends_trial: false
 }
 
 if (k !== 31) {
@@ -594,7 +601,7 @@ timeline.push(inter_block);
 }
 
   
-/*			*/
+		*/
 
 }	
 

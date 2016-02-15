@@ -94,13 +94,17 @@ l8.attr({
 
 //Draw (hidden) circles:
 
-var c1 = s.circle(150, 150, 25);
+var c1 = s.circle(150, 150, 35);
 c1.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c2 = s.circle(250, 150, 25);
+var c2 = s.circle(250, 150, 35);
 c2.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
 var c3 = s.circle(350, 150, 35);
 c3.attr({
@@ -108,29 +112,41 @@ c3.attr({
 	stroke: "white",
 	strokeWidth: 22
 });
-var c4 = s.circle(150, 250, 25);
+var c4 = s.circle(150, 250, 35);
 c4.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c5 = s.circle(250, 250, 25);
+var c5 = s.circle(250, 250, 35);
 c5.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c6 = s.circle(350, 250, 25);
+var c6 = s.circle(350, 250, 35);
 c6.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c7 = s.circle(150, 350, 25);
+var c7 = s.circle(150, 350, 35);
 c7.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c8 = s.circle(250, 350, 25);
+var c8 = s.circle(250, 350, 35);
 c8.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
-var c9 = s.circle(350, 350, 25);
+var c9 = s.circle(350, 350, 35);
 c9.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
 
 
@@ -269,14 +285,29 @@ c3.click(function() {
 
     function arrayDifferences(arr1, arr2) {
       var n_diff = 0;
+	  var dots_too_many = 0;
+	  var n_dots = 0;
       for (var i = 0; i < arr1.length; i++) {
-        if (arr1[i] != arr2[i]) {
+        if (arr1[i] != arr2[i] && arr1[i] === 1) {
           n_diff++;
         }
       }
-      return n_diff;
+	  return n_diff;
     }
-
+	function overshoot(arr) {
+		var n_dots = 0;
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === 1) {
+				n_dots++;
+			}
+		}
+		if (n_dots>4){
+			return n_dots - 4;
+		} else {
+			n_dots = 0;
+			return n_dots;
+		}	
+	}
     // save data
     var trial_data = {};
 
@@ -290,13 +321,14 @@ c3.click(function() {
       // this is meaningless for trials where the user can't edit
       var n_diff = arrayDifferences(trial.configuration, dotIsVisible);
       var correct = (n_diff === 0);
-
+	  var n_dots = overshoot(dotIsVisible);
+	  var n_wrong = n_diff + n_dots;
       trial_data = {
         "configuration_by_VP": JSON.stringify(dotIsVisible),
         "target_configuration": JSON.stringify(trial.configuration),
         "rt": response_time,
         "correct": correct,
-        "num_wrong": n_diff,
+        "num_wrong": n_wrong,
       };
 
       if (trial.show_feedback) {
