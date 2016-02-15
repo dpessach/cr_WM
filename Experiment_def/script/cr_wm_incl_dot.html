@@ -9,6 +9,7 @@
 	<script src="../plugins/jspsych-single-stim.js"></script>
     <script src="../plugins/jspsych-similarity_for_cr_wm.js"></script>
 	<script src="../plugins/jspsych-text.js"></script>
+	<script src="../plugins/jspsych-instructions_DE.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css"></link>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
     <style>
@@ -17,9 +18,6 @@
   </head>
   <body>
     <div id="jspsych-target"></div>
-	<p id="demo1"></p>
-	<p id="demo2"></p>
-	<p id="demo3"></p>
   </body>
   <script>
 
@@ -122,69 +120,101 @@ var stimlistNA = [];
 for (i= 0; i < stimlistNA.length; i++) {
 	xi = stimlistNA[i];
 	if (xi == "1p_q") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p><p> Konklusion: Also geht es auf Suche nach Beute.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es auf Suche nach Beute geht?</p>");
 	} else if (xi === "1p_nq") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p><p> Konklusion: Also geht es nicht auf Suche nach Beute.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat Hunger.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es NICHT auf Suche nach Beute geht?</p>");
 	} else if (xi === "1nq_np") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht nicht auf Suche nach Beute.</p><p> Konklusion: Also hat es keinen Hunger.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht NICHT auf Suche nach Beute.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es KEINEN Hunger hat?</p>");
 	} else if (xi === "1nq_p") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht nicht auf Suche nach Beute.</p><p> Konklusion: Also hat es Hunger.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht NICHT auf Suche nach Beute.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es Hunger hat?</p>");
 	} else if (xi === "1q_p") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p><p> Konklusion: Also hat es Hunger.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es Hunger hat?</p>");
 	} else if (xi === "1q_np") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p><p> Konklusion: Also hat es keinen Hunger.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier geht auf Suche nach Beute.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es KEINEN Hunger hat?</p>");
 	} else if (xi === "1np_nq") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat keinen Hunger.</p><p> Konklusion: Also geht es nicht auf Suche nach Beute.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat KEINEN Hunger.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es NICHT auf Suche nach Beute geht?</p>");
 	} else if (xi === "1np_q") {
-	stimlist.push("<p>Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat keinen Hunger.</p><p> Konklusion: Also geht es auf Suche nach Beute.</p>");
+	stimlist.push("<p>Regel: Wenn ein Raubtier Hunger hat, dann geht es auf Suche nach Beute.</p><p> Beobachtung: Das Raubtier hat KEINEN Hunger.</p>"+
+	"<p> Wie gross ist die Wahrscheinlichkeit, dass es auf Suche nach Beute geht?</p>");
 	} else if (xi === "2p_q") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er schnell an Luft.</p>");
+	stimlist.push("<p>Regel: Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er schnell an Luft verliert?</p>");
 	} else if (xi === "2p_nq") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er nicht schnell an Luft.</p>");
+	stimlist.push("<p>Regel: Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon wurde mit einer Nadel gestochen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er NICHT schnell an Luft verliert?</p>");
 	} else if (xi === "2nq_np") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert nicht schnell an Luft.</p><p> Konklusion: Also wurde er nicht mit einer Nadel gestochen.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon verliert NICHT schnell an Luft.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er NICHT mit einer Nadel gestochen wurde?</p>");
 	} else if (xi === "2nq_p") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert nicht schnell an Luft.</p><p> Konklusion: Also wurde er mit einer Nadel gestochen.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon verliert NICHT schnell an Luft.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er mit einer Nadel gestochen wurde?</p>");
 	} else if (xi === "2q_p") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Konklusion: Also wurde er mit einer Nadel gestochen.</p>");
+	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er mit einer Nadel gestochen wurde?</p>");
 	} else if (xi === "2q_np") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Konklusion: Also wurde er nicht mit einer Nadel gestochen.</p>");
+	stimlist.push("<p>Regel: Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon verliert schnell an Luft.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er NICHT mit einer Nadel gestochen wurde?</p>");
 	} else if (xi === "2np_nq") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde nicht mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er nicht schnell an Luft.</p>");
+	stimlist.push("<p>Regel: Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon wurde NICHT mit einer Nadel gestochen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er NICHT schnell an Luft verliert?</p>");
 	} else if (xi === "2np_q") {
-	stimlist.push("<p> Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p><p> Beobachtung: Ein Ballon wurde nicht mit einer Nadel gestochen.</p><p> Konklusion: Also verliert er schnell an Luft.</p>");
+	stimlist.push("<p>Regel: Wenn ein Ballon mit einer Nadel gestochen wurde, dann verliert er schnell an Luft.</p>"+
+	"<p> Beobachtung: Ein Ballon wurde NICHT mit einer Nadel gestochen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass er schnell an Luft verliert?</p>");
 	} else if (xi === "3p_q") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es schwanger.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr vollzogen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es schwanger ist? </p>");
 	} else if (xi === "3p_nq") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es nicht schwanger.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen hat Geschlechtsverkehr vollzogen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es NICHT schwanger ist?</p>");
 	} else if (xi === "3nq_np") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist nicht schwanger.</p><p> Konklusion: Also hat es keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen ist NICHT schwanger.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es KEINEN Geschlechtsverkehr vollzogen hat?</p>");
 	} else if (xi === "3nq_p") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist nicht schwanger.</p><p> Konklusion: Also hat es Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen ist NICHT schwanger.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es Geschlechtsverkehr vollzogen hat?</p>");
 	} else if (xi === "3q_p") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Konklusion: Also hat es Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es Geschlechtsverkehr vollzogen hat?</p>");
 	} else if (xi === "3q_np") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Konklusion: Also hat es keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen ist schwanger.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es KEINEN Geschlechtsverkehr vollzogen hat?</p>");
 	} else if (xi === "3np_nq") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es nicht schwanger.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen hat KEINEN Geschlechtsverkehr vollzogen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es NICHT schwanger ist?</p>");
 	} else if (xi === "3np_q") {
-	stimlist.push("<p>Wenn ein M&aumldchen Geschlechtsverkehr mit ihrem Freund vollzogen hat, dann ist es schwanger.</p><p> Beobachtung: Ein M&aumldchen hat keinen Geschlechtsverkehr mit ihrem Freund vollzogen.</p><p> Konklusion: Also ist es schwanger.</p>");
+	stimlist.push("<p>Regel: Wenn ein M&aumldchen Geschlechtsverkehr vollzogen hat, dann ist es schwanger.</p>"+
+	"<p> Beobachtung: Ein M&aumldchen hat KEINEN Geschlechtsverkehr vollzogen.</p><p> Wie gross ist die Wahrscheinlichkeit, dass es schwanger ist?</p>");
 	} else if (xi === "4p_q") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt viel Cola.</p><p> Konklusion: Also nimmt sie an Gewicht zu.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person trinkt viel Cola.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie an Gewicht zunimmt?</p>");
 	} else if (xi === "4p_nq") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt viel Cola.</p><p> Konklusion: Also nimmt sie nicht an Gewicht zu.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person trinkt viel Cola.</p><p>Wie gross ist die Wahrscheinlichkeit, dass sie NICHT an Gewicht zunimmt?</p>");
 	} else if (xi === "4nq_np") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt nicht an Gewicht zu.</p><p> Konklusion: Also trinkt sie nicht viel Cola.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person nimmt NICHT an Gewicht zu.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie NICHT viel Cola trinkt?</p>");
 	} else if (xi === "4nq_p") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt nicht an Gewicht zu.</p><p> Konklusion: Also trinkt sie viel Cola.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person nimmt NICHT an Gewicht zu.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie viel Cola trinkt?</p>");
 	} else if (xi === "4q_p") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p> Konklusion: Also trinkt sie viel Cola.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p>Wie gross ist die Wahrscheinlichkeit, dass sie viel Cola trinkt?</p>");
 	} else if (xi === "4q_np") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p> Konklusion: Also trinkt sie nicht viel Cola.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person nimmt an Gewicht zu.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie NICHT viel Cola trinkt?</p>");
 	} else if (xi === "4np_nq") {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt nicht viel Cola.</p><p> Konklusion: Also nimmt sie nicht an Gewicht zu.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person trinkt NICHT viel Cola.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie NICHT an Gewicht zunimmt?</p>");
 	} else {
-	stimlist.push("<p> Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p><p> Beobachtung: Eine Person trinkt nicht viel Cola.</p><p> Konklusion: Also nimmt sie an Gewicht zu.</p>");
+	stimlist.push("<p>Regel: Wenn eine Person viel Cola trinkt, dann nimmt sie an Gewicht zu.</p>"+
+	"<p> Beobachtung: Eine Person trinkt NICHT viel Cola.</p><p> Wie gross ist die Wahrscheinlichkeit, dass sie an Gewicht zunimmt?</p>");
 	} 
 }
 
@@ -263,18 +293,56 @@ for (i= 0; i < stimlistNA.length; i++) {
 
 
 //*****************************************************//////////////////*****************************************************
-//*****************************************************// Probetrials: //*****************************************************
+//*****************************************************// Instuctons:  //*****************************************************
 //*****************************************************//////////////////*****************************************************
 
-var Intro1 = {
-	type: 'text',
-	text: '<p>Willkommen zum Experiment.</p><p></p><p>Vielen Dank, dass Sie sich die Zeit nehmen Bla bla.</p>' +
-	'<p>Die ersten drei Durchg&aumlnge sind &Uumlbungsdurchg&aumlnge. Bei den ersten zwei werden Sie sich jeweils die Position der vier Punkte merken m&uumlssen, '+
-	'beim dritten &Uumlbungsdurchgang nicht (es erscheint nur ein leeres Gitter).</p>' +
-	'<p>Dr&uumlcken Sie eine beliebige Taste um zu den &Uumlbungsdurchg&aumlngen zu gelangen</p>'
-}
-timeline.push(Intro1);
 
+
+var instr1 = {
+	type: 'instructions',
+	show_clickable_nav: true,
+	pages: [
+	"<p style='text-align: center; text-decoration: underline;  line-height: 1.8;font-size: 150%'>Herzlich willkommen zum Experiment!</p>"+
+	"<p>Vielen Dank, dass Sie sich die Zeit nehmen, um an unserem Versuch teilzunehmen. "+
+	"Bei den folgenden Aufgaben pr&aumlsentieren wir Ihnen jeweils eine Regel sowie eine damit zusammenh&aumlngende Beobachtung. Ihre Aufgabe ist es "+
+	"einzusch&aumltzen, mit welcher Wahrscheinlichkeit eine bestimmte Folgerung zutrifft.</p>" +
+	"<p style='line-height: 3.8; text-decoration: underline;'>Ein Beispiel:</p><p style='line-height: 0.5;'>Regel: Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
+	"<p style='line-height: 0.5;'>Beobachtung: Eine Person hat KEINE Grippe.</p>"+
+	"<p style='line-height: 0.5;'>Wie gross sch&aumltzen Sie die Wahrscheinlichkeit, dass die Person Fieber hat? </p>"+
+	"<p>Sie m&uumlssen Ihre Bewertung jeweils auf einer Skala von 0 bis 100 Prozent angeben:</p><p><img src='slider.png' style='width:800px;height:80px'></img>"+
+	"<ul><li>Wenn Sie meinen, dass die Person auf keinen Fall Fieber hat, dann markieren Sie 0%.</li>"+
+	"<li>Wenn Sie meinen, dass die Person in jedem Fall Fieber hat, dann markieren Sie 100%</li>"+
+	"<li>Wenn Sie meinen, dass die Person mit einer Wahrscheinlichkeit von zum Beispiel 85 Prozent Fieber hat, dann markieren Sie 85%.</li></ul>",
+	"<p style='text-decoration: underline;line-height: 3.5;'>Noch ein Hinweis:</p><p>F&uumlr jede Beobachtung wird die Antwort zweimal erfragt und zwar, verteilt auf zwei "+
+	"Aufgabenbl&oumlcke, einmal <b>positiv</b> formuliert und einmal <b>negativ</b> formuliert.</p>"+
+	"<p style='line-height: 3.8; text-decoration: underline;'>Ein Beispiel:</p>"+
+	"<p style='text-indent: 50px; line-height: 0.5;'>Wenn eine Person Grippe hat, dann hat sie Fieber.</p>"+
+	"<p style='text-indent: 50px; line-height: 0.5;'>Beobachtung: Eine Person hat Grippe.</p>"+
+	"<p style='text-indent: 50px; line-height: 0.5;'>Wie gross sch&aumltzen Sie die Wahrscheinlichkeit, ...</p>"+
+	"<p style='text-indent: 100px;'>. . . dass die Person Fieber hat? (<i>positive</i> Formulierung)</p>"+
+	"<p style='text-indent: 100px;'>. . . dass die Person KEIN Fieber hat? (<i>negative</i> Formulierung)</p>"+
+	"<p style='line-height: 7.8'>Damit soll eine zuverl&aumlssigere Sch&aumltzung der erfragten Wahrscheinlichkeit erreicht werden.</p>",
+	"Zus&aumltzlich zu der vorher beschriebenen Aufgabe wird in einigen Durchg&aumlngen eine weitere Aufgabe pr&aumlsentiert, bei der Sie sich jeweils die <b>Position "+
+	"von vier Punkten</b> in einem Gitter merken m&uumlssen.</p>"+
+	"<div class='center-content'><img src='gitter1.png' style='width:200px;height:200px'></img></div>"+
+	"<p>Das Gitter mit den vier Punkten wird jeweils <b>vor</b> der Aufgabe zur Sch&aumltzung der"+
+	" Wahrscheinlichkeit eingeblendet. Nachdem Sie Ihre Sch&aumltzung abgegeben haben,"+
+	" wird ein leeres Gitter eingeblendet. In dieses leere Gitter k&oumlnnen Sie dann die Position der Punkte einzeichnen. "+
+	"Dazu m&uumlssen Sie lediglich auf die Felder klicken, in denen Sie die Punkte einzeichnen wollen. Wenn Sie einen Punkt wieder wegmachen wollen, klicken Sie einfach "+
+	"nochmals auf ihn.</p><p>Die Punkte kommen nur in der H&aumllfte der Durchg&aumlnge vor. In der anderen H&aumllfte wird Ihnen lediglich ein leeres Gitter"+
+	"gezeigt, damit die Durchg&aumlnge vergleichbar sind.</p>"+
+	"<p>Um Ihnen das Ganze zu veranschaulichen, kommen nun drei &Uumlbungsdurchg&aumlnge. Bei den ersten zwei werden Sie sich die Position "+
+	"der Punkte merken m&uumlssen, beim dritten &Uumlbungsdurchgang nicht (es erscheint nur ein leeres Gitter).</p>" +
+	"<p style='line-height:3;'>Durch dr&uumlcken auf 'Weiter' gelangen Sie zu den &Uumlbungsdurchg&aumlngen.</p>"
+	]
+}
+timeline.push(instr1);
+
+
+
+//*****************************************************//////////////////*****************************************************
+//*****************************************************// Probetrials: //*****************************************************
+//*****************************************************//////////////////*****************************************************
 
 var c1 = [0, 0, 1, 0, 1, 1, 0, 0, 1];
 var s1 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c1);
@@ -282,9 +350,9 @@ var c2 = [1, 0, 1, 0, 0, 1, 1, 0, 0];
 var s2 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c2);
 var c3 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var s3 = jsPsych.plugins.dotWMTask.generate_stimulus(4, c3); 
-var cr1 = '<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist so, wie er heisst.</p><p> Konklusion: Also kommt am Samstag das Sams.</p>';
-var cr2 = "<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist nicht so, wie er heisst.</p><p> Konklusion: Also kommt am Samstag das Sams nicht.</p>";
-var cr3 = "<p>Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Am Samstag kommt das Sams.</p><p> Konklusion: Also ist jeder Tag so, wie er heisst.</p>";
+var cr1 = '<p>Regel: Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist so, wie er heisst.</p><p> Wie gross ist die Wahrscheinlichkeit, dass am Samstag das Sams kommt?</p>';
+var cr2 = "<p>Regel: Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Jeder Tag ist nicht so, wie er heisst.</p><p> Wie gross ist die Wahrscheinlichkeit, dass am Samstag das Sams nicht kommt?</p>";
+var cr3 = "<p>Regel: Wenn jeder Tag so ist wie er heisst, kommt am Samstag das Sams.</p><p> Beobachtung: Am Samstag kommt das Sams.</p><p> Wie gross ist die Wahrscheinlichkeit, dass jeder Tag so ist, wie er heisst.</p>";
 var cr = [cr1, cr2, cr3];
 
 
@@ -315,7 +383,7 @@ var cr = [cr1, cr2, cr3];
 		configuration: c1,
 		editable: true,
 		show_feedback: true,
-		timing_feedback: 2000,
+		timing_feedback: 750,
 		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
 	}
 	timeline.push(pb1_3);
@@ -347,7 +415,7 @@ var cr = [cr1, cr2, cr3];
 		configuration: c2,
 		editable: true,
 		show_feedback: true,
-		timing_feedback: 2000,
+		timing_feedback: 750,
 		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
 	}
 	timeline.push(pb2_3);
@@ -377,20 +445,21 @@ var cr = [cr1, cr2, cr3];
 		type: 'single-stim',
 		stimulus: s3,
 		is_html: true,
-		timing_response: 1000,
+		timing_response: 750,
 		response_ends_trial: false,
 	}
 	timeline.push(pb3_3);
 /*
 */
 
-var Intro2 = {
+var Intro4 = {
 	type: 'text',
 	text: '<p>Nun geht es los mit den Test-Durchg&aumlngen.</p>' +
-	'<p>Bitte bearbeiten Sie alle Durchg&aumlnge ohne Unterbruch.</p><p></p>' +
-	'<p>Dr&uumlcken Sie eine beliebige Taste, um zu starten.</p>'
+	'<p>Bitte bearbeiten Sie alle Durchg&aumlnge ohne Unterbruch und lesen Sie sich die Fragen jeweils sorgf&aumlltig durch. Es kommt keine Frage zweimal vor, '+
+	'auch wenn das manchmal so scheinen mag. Es kommt sehr auf die <ins>Details</ins> der Formulierung an.</p>' +
+	'<p style="line-height: 3">Dr&uumlcken Sie eine beliebige Taste, um zu starten.</p>'
 }
-timeline.push(Intro2);
+timeline.push(Intro4);
 
 
 //*****************************************************//////////////////*****************************************************
@@ -458,8 +527,9 @@ for (k = 0; k < stimlistModus.length; k++) {
 		configuration: configs[k],
 		editable: true,
 		show_feedback: true,
-		timing_feedback: 2000,
-		prompt: '<p>Klicken Sie auf die Felder, in denen vorhin die Punkte gezeigt wurden und dr&uumlcken Sie dann auf "Weiter".</p>'
+		timing_feedback: 750,
+		prompt: '<p>Klicken Sie auf die Felder, in denen im vorhergehenden Gitter die Punkte gezeigt wurden.'+
+		'Durch dr&uumlcken auf "Weiter" startet der n&aumlchste Durchgang. </p>'
 	}
 
 	
@@ -468,7 +538,7 @@ for (k = 0; k < stimlistModus.length; k++) {
 		type: 'single-stim',
 		stimulus: stimuli_dots[k],
 		is_html: true,
-		timing_response: 1000,
+		timing_response: 750,
 		response_ends_trial: false,
 	}
 	
@@ -516,7 +586,7 @@ timeline.push(if_node_empty);
 	
 var inter_block = {
 	type: 'text',
-    text: 'F&uumlr den N&aumlchsten Durchgang beliebige Taste dr&uumlcken'
+    text: 'F&uumlr den N&aumlchsten Durchgang beliebige Taste dr&uumlcken.'
 }
 
 if (k !== 31) {

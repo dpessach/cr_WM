@@ -98,14 +98,15 @@ var c1 = s.circle(150, 150, 25);
 c1.attr({
     opacity: 0
 });
-
 var c2 = s.circle(250, 150, 25);
 c2.attr({
     opacity: 0
 });
-var c3 = s.circle(350, 150, 25);
+var c3 = s.circle(350, 150, 35);
 c3.attr({
-    opacity: 0
+    opacity: 0,
+	stroke: "white",
+	strokeWidth: 22
 });
 var c4 = s.circle(150, 250, 25);
 c4.attr({
