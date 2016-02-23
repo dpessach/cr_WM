@@ -9,7 +9,7 @@
  */
 
 
-jsPsych.plugins['survey-multi-choice'] = (function() {
+jsPsych.plugins['survey'] = (function() {
 
   var plugin = {};
 
@@ -77,7 +77,9 @@ jsPsych.plugins['survey-multi-choice'] = (function() {
           "id": option_id_name,
           "class": _join(plugin_id_name, 'option')
         }));
-
+	if (trial.options[i] === "0") {
+		$(question_selector).append('<textarea id="text'+ i + '" name="#jspsych-survey-text-response-' + i + '" cols="20" rows="1"></textarea>');
+	} else {
         // add label and question text
         var option_label = '<label class="' + plugin_id_name + '-text">' + trial.options[i][j] + '</label>';
         $(option_id_selector).append(option_label);
@@ -85,7 +87,8 @@ jsPsych.plugins['survey-multi-choice'] = (function() {
         // create radio button
         var input_id_name = _join(plugin_id_name, 'response', i);
         $(option_id_selector + " label").prepend('<input type="radio" name="' + input_id_name + '" value="' + trial.options[i][j] + '">');
-      }
+		}
+	 }
 
       if (trial.required && trial.required[i]) {
         // add "question required" asterisk
@@ -101,7 +104,7 @@ jsPsych.plugins['survey-multi-choice'] = (function() {
       'type': 'submit',
       'id': plugin_id_name + '-next',
       'class': plugin_id_name + ' jspsych-btn',
-      'value': 'Submit Answers'
+      'value': 'Antworten abschicken'
     }));
 
     $trial_form.submit(function(event) {
@@ -116,7 +119,9 @@ jsPsych.plugins['survey-multi-choice'] = (function() {
       var question_data = {};
       $("div." + plugin_id_name + "-question").each(function(index) {
         var id = "Q" + index;
-        var val = $(this).find("input:radio:checked").val();
+        if (trial.options[index] === "0") {
+		var val = $(this).children('textarea').val();
+		} else { var val = $(this).find("input:radio:checked").val();}
         var obje = {};
         obje[id] = val;
         $.extend(question_data, obje);

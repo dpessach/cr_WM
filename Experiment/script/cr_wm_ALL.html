@@ -11,8 +11,7 @@
 	<script src="../plugins/jspsych-text.js"></script>
 	<script src="../plugins/jspsych-instructions_DE.js"></script>
 	<script src="../plugins/jspsych-html.js"></script>
-	<script src="../plugins/jspsych-survey-multi-choice-plus-text.js"></script>
-	<script src="../plugins/jspsych-survey-text.js"></script>
+	<script src="../plugins/jspsych-survey.js"></script>
     <link rel="stylesheet" href="css/jquery-ui.css"></link>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
     <style>
@@ -344,12 +343,12 @@ timeline.push(study_info);
   timeline.push(consent_block);
  
 
-
+*/
 
 //*****************************************************//////////////////*****************************************************
 //*****************************************************// Instuctons:  //*****************************************************
 //*****************************************************//////////////////*****************************************************
-
+/*
 
 
 var instr1 = {
@@ -391,9 +390,8 @@ var instr1 = {
 	]
 }
 timeline.push(instr1);
-/*
-*/
 
+*/
 //*****************************************************//////////////////*****************************************************
 //*****************************************************// Probetrials: //*****************************************************
 //*****************************************************//////////////////*****************************************************
@@ -525,7 +523,7 @@ timeline.push(Intro4);
 //*****************************************************//////////////////*****************************************************
 
 for (k = 0; k < stimlistModus.length; k++) {			//3 nur zum korr., richtig: stimlist.length !!!
-/* */   
+  
 //random selection of dots to show:
 		var prelim_config = [0, 0, 1, 0, 1, 1, 0, 0, 1];
 		var configuration = jsPsych.randomization.shuffle(prelim_config);
@@ -643,6 +641,7 @@ var if_node_empty = {
     }
 }
 timeline.push(if_node_empty);
+
 /*		
 var inter_block = {
 	type: 'single-stim',
@@ -655,9 +654,9 @@ var inter_block = {
 if (k !== 31) {
 timeline.push(inter_block);
 }
-
+*/
   
-		*/
+		
 
 }	
 
@@ -665,25 +664,37 @@ timeline.push(inter_block);
 //*****************************************************//   Demogr.:   //*****************************************************
 //*****************************************************//////////////////*****************************************************
 
-var age = ["Wie alt sind Sie?"];
-var mc_questions = [
-	"Geschlecht:", 
-	"Status", 
-	"h&oumlchster Schulabschluss:", 
-	"Haben Sie Vorkenntnisse in formaler Logik (z.B. Uni-Einführungskurs o.ä.)?",
-	"Hier stehen einige Hobbies zur Auswahl. Wenn Sie diese Instruktion lesen, schreiben Sie bitte 'ich habe die Instruktion gelesen' ins Feld 'Andere'.",
-	"Haben Sie die Aufgaben gewissenhaft bearbeitet?"];
-var opt1 = ["m", "w"];
-var opt2 = ["Arbeitstätig", "Im Studium", "Auf Arbeitssuche"];
-var opt3 = []
 
-var survey = {
-	type: 'survey-multi-choice-plus-text',
-	questions_t: age,
-	questions: mc_questions,
-	options: [opt1, opt2, opt3]
-}
-timeline.push(survey);
+var q1 = [
+	"Alter:",
+	"Geschlecht:", 
+	"Status:", "h&oumlchster Schulabschluss:"];
+var q2 =["Haben Sie Vorkenntnisse in formaler Logik (z.B. Uni-Einf&uumlhrungskurs o.&auml.)?",
+	"Hier stehen einige Hobbies zur Auswahl. Wenn Sie diese Instruktion lesen, schreiben Sie bitte 'ich habe die Instruktion gelesen' unten ins Feld 'Andere'.",
+	"Andere:",
+	"Haben Sie die Aufgaben gewissenhaft bearbeitet? (Die Antwort auf diese Frage hat keine Einfluss auf Ihre Bezahlung.)",
+	"Wenn Sie noch Anmerkungen/Verbesserungsvorschl&aumlge haben, k&oumlnnen Sie diese hier aufschreiben:"];
+var opt1 = ["m&aumlnnlich", "weiblich", "anderes / keine Angaben"];
+var opt2 = ["Berufst&aumltig", "Studium/Schule", "Arbeitssuchend"];
+var opt3 = ["Hochschulabschluss", "Abitur/Matur", "Mittlere Reife/Sekundarschule", "(noch) kein Abschluss"];
+var opt4 = ["Ja", "Nein"]
+var opt5 = ["Lesen", "Kino", "Sport", "Ausgehen", "Wandern", "meine Yacht", "Golf"];
+var opt6 = ["Ja (meine Daten k&oumlnnen verwendet werden).", "Nein (bitte meine Daten nicht verwenden)."];
+var survey_p1 = {
+	type: 'survey',
+	questions: q1,
+	options: ["0", opt1, opt2, opt3],
+	preamble: ["<p>Vielen Dank f&uumlr Ihre Teilnahme. Wir m&oumlchten Sie nun bitten, noch kurz einige Fragen zu beantworten.</p>"+
+	"<p>Danach werden Sie ...</p>"]
+};
+timeline.push(survey_p1);
+
+var survey_p2 = {
+	type: 'survey',
+	questions: q2,
+	options: [opt4, opt5, "0", opt6, "0"]
+};
+timeline.push(survey_p2);
 
   var vp_ID = jsPsych.randomization.randomID(6);
     jsPsych.data.addProperties({VP: vp_ID})
